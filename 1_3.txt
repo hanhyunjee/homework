@@ -1,0 +1,225 @@
+1.
+import java.util.Scanner;
+
+class SignRepeat {
+   public static void main(String[] args) {
+	  Scanner stdIn = new Scanner(System.in);
+		 int retry;
+
+		  do {
+			  System.out.print("정수값:");
+			  int n = stdIn.nextInt();
+			
+			  if (n > 0)
+				  System.out.println("이 값은 양수입니다.");
+			  else if (n < 0)
+				  System.out.println("이 값은 음수입니다.");
+			  else
+				  System.out.println("이 값은 0입니다.");
+			
+			  System.out.print("다시 한번? 1-Yes / 0-No:");
+			  retry = stdIn.nextInt();
+       } while (retry==1);
+    }
+}
+
+
+2.
+import java.util.Scanner;
+
+class ThreeDigits {
+
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		int x; 
+		do {
+			System.out.print("세 자리의 정숫값:");
+			x = stdIn.nextInt();
+        } while (x < 100 || x >999);
+		
+		System.out.print("입력한 값은 " + x + "입니다.");
+    }
+}
+
+
+
+3.
+import java.util.Random;
+import java.util.Scanner;
+
+class Number2digits {
+	public static void main(String[] args) {
+		Random rand = new Random();
+		Scanner stdIn = new Scanner(System.in);
+		int no = 10 + rand.nextInt(90);
+		System.out.println("숫자 맞추기 게임 시작!");
+		System.out.println("10부터 99사이의 숫자를 맞추세요.");
+		int x;
+		   do {
+		   System.out.print("어떤 숫자일까?:");
+		   x = stdIn.nextInt();
+		   
+		   if(x > no)
+			   System.out.println("더 작은 숫자입니다.");
+		   else if(x < no)
+			   System.out.println("더 큰 숫자입니다.");
+		   } while (x != no);
+		   System.out.print("정답입니다.");
+    }
+}
+
+4.
+import java.util.Scanner;
+
+class EnumScope {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		System.out.print("정수 A:"); int a = stdIn.nextInt();
+		System.out.print("정수 B:"); int b = stdIn.nextInt();
+		if(a > b) {
+			int t = a;
+			a = b;
+			b = t;
+		}		
+		do {
+			System.out.print(a + " ");
+			a = a +1;
+		} while (a <= b);
+		System.out.println();
+	}
+}
+5. 
+import java.util.Scanner;
+
+class CountDown {
+  public static void main(String[] args) {
+    Scanner stdln = new Scanner(System.in);
+    System.out.println("카운트다운 합니다.");
+    int x;
+    do {
+        System.out.print("양의 정숫값:");
+	      x = stdln.nextInt();
+    } while (x <= 0);
+    //do문 종료 시 x는 반드시 양의 값이 된다.
+		
+    // while문
+    while (x >=0)
+	    System.out.println(x--);
+	    System.out.println("x의 값이" + x + "이 됐습니다.");
+   }
+}
+
+
+
+6. 
+import java.util.Scanner;
+
+class CountDownPre {
+  public static void main(String[] args) {
+    Scanner stdln = new Scanner(System.in);
+    System.out.println("카운트다운 합니다.");
+    int x;
+    do {
+       System.out.print("양의 정숫값:");
+       x = stdln.nextInt();
+    } while (x <= 0);
+			
+    while (x >=0)
+        System.out.println(--x);			                // x값을 표시한 후 감소시킴
+    System.out.println("x의 값이 " + x + "이 됐습니다.");  // x값 표시
+  }
+}
+
+
+
+
+7.
+import java.util.Scanner;
+
+class PutAsterisk1 {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		System.out.print("몇 개의 *를 표시할까요?:");
+		int n = stdIn.nextInt();
+		if (n > 0) {
+			int i = 0;
+			while (i < n) {
+				System.out.print('*');
+				i++;
+			}
+			System.out.println();
+		}
+	}
+}
+
+
+8.
+// 읽은 개수만큼 *와 +를 교대로 표시(방법1)
+import java.util.Scanner;
+
+class PutAsteriskAlt1 {
+    public static void main(String[] args) {
+      Scanner stdIn = new Scanner(System.in);
+	  System.out.print("몇 개를 표시할까요?:");
+	  int n = stdIn.nextInt();
+      if (n > 0) {
+	    int i = 0;
+	    while (i < n) {
+	      if (i % 2 == 0)		// i가 짝수이면 '*'를 출력	
+		    System.out.print('*');
+		else		            	// i가 홀수이면 '+'를 출력
+		    System.out.print('+');
+		i++;
+	    }
+	    System.out.println();
+      }
+   }
+}
+
+
+
+9.
+// 읽은 개수만큼 *와 +를 교대로 표시(방법2)
+import java.util.Scanner;
+
+class PutAsterisAlt2 {
+  public static void main(String[] args) {
+	Scanner stdIn = new Scanner(System.in);
+	System.out.print("몇 개를 표시할까요?:");
+	int n = stdIn.nextInt();
+	if (n > 0) {
+	    int i = 0;
+	    while (i < n / 2) {		// n/2개의 "*+"를 출력
+	      System.out.print("*+");
+	      i++;
+        }
+	    if (n % 2 == 1)		   // n이 홀수일 때만
+          System.out.print('*');
+	    System.out.println();
+     } 
+   }
+}
+
+
+10.
+// 양의 정숫값을 읽어 자릿수를 표시한다
+import java.util.Scanner;
+
+class DigitNo {
+  public static void main(String[] args) {
+	Scanner stdIn = new Scanner(System.in);
+	System.out.println("양의 정숫값의 자릿수를 표시합니다.");
+	int x;
+	do {
+	    System.out.print("양의 정숫값:");
+	    x = stdIn.nextInt();
+	 } while (x <= 0);
+		
+	int digit = 0;    // 자릿수
+	while (x > 0) {
+        digit++;    // 자릿수를 증가
+	    x /= 10;   // x를 10으로 나눔
+      }
+      System.out.println("입력한 숫자는 " + digit + "자리입니다.");
+   }
+}
