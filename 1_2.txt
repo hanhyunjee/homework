@@ -1,0 +1,351 @@
+1-1.
+import java.util.Scanner;
+
+class Max2A {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+	System.out.print("실수 a: "); double a = stdIn.nextDouble();
+	System.out.print("실수 b: "); double b = stdIn.nextDouble();
+		
+	double max; // 큰 값을 저장
+	if (a > b)
+	   max = a;
+	else
+	   max = b;
+		
+	System.out.println("큰 쪽의 값은 " + max + "입니다.");
+	}
+
+}
+
+1-2.
+import java.util.Scanner;
+
+
+class Max2B {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+	System.out.print("실수 a:"); double a = stdIn.nextDouble();
+	System.out.print("실수 b:"); double b = stdIn.nextDouble();
+		
+	double max = a > b ? a : b;
+	System.out.println("큰 쪽의 값은 " + max + "입니다.");
+		
+	}
+
+}
+
+2-1.
+import java.util.Scanner;
+
+public class Diff2A {
+	public static void main(String[] args) {
+	    Scanner stdIn = new Scanner(System.in);
+	    System.out.print("정수 a:"); int a = stdIn.nextInt();
+	    System.out.print("정수 b:"); int b = stdIn.nextInt();
+		
+	    int diff;
+	    if (a >= b)
+	      diff= a - b;
+	    else
+	      diff = b - a;
+		
+	    System.out.println("두 값의 차는 " + diff + "입니다.");
+ }
+}
+
+
+
+
+
+
+
+2-2.
+import java.util.Scanner;
+
+public class Diff2B {
+
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+	System.out.print("정수 a:"); int a = stdIn.nextInt();
+	System.out.print("정수 b:"); int b = stdIn.nextInt();
+	int diff = a >= b ? a - b : b - a;
+	System.out.println("두 값의 차는 " + diff + "입니다.");
+
+	}
+
+}
+
+	}
+
+}
+
+3-1.
+import java.util.Scanner;
+
+public class Diff2Digits1 {
+    public static void main(String[] args) {
+	Scanner stdIn = new Scanner(System.in);
+	   
+	System.out.print("정수 a:"); int a = stdIn.nextInt();
+	System.out.print("정수 b:"); int b = stdIn.nextInt();
+	   
+        int diff = a>= b? a -b : b -a;
+	   
+        if (diff <=10)
+	   System.out.println("두 값의 차는 10이하입니다.");
+	else
+	   System.out.println("두 값의 차는 11이상입니다.");
+	  
+	}
+}
+
+3-2.
+import java.util.Scanner;
+
+public class Diff2Digits2 {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		   
+	System.out.print("정수 a:"); int a = stdIn.nextInt();
+	System.out.print("정수 b:"); int b = stdIn.nextInt();
+		   
+	int diff = a>= b? a -b : b -a;		   
+	System.out.println("두 값의 차는 " + 
+	                  (diff <= 10? "10이하" : "11이상") +"입니다.");
+
+	}
+}
+
+
+
+
+
+
+
+
+
+4.
+import java.util.Scanner;
+
+public class Min3 {
+
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		   
+	System.out.print("정수 a:"); int a = stdIn.nextInt();
+        System.out.print("정수 b:"); int b = stdIn.nextInt();
+	System.out.print("정수 b:"); int c = stdIn.nextInt();
+		   
+	 int min = a;
+	 if (b < min) min = b;
+         if (c < min) min = c;
+		   
+	 System.out.println("최솟값은" + min +"입니다.");
+
+	}
+
+}
+
+5.
+
+import java.util.Scanner;
+
+public class Med3 {
+
+    public static void main(String[] args) {
+        Scanner stdln = new Scanner(System.in);
+	    
+        System.out.print("정수 a:"); int a = stdln.nextInt();
+        System.out.print("정수 b:"); int b = stdln.nextInt();
+        System.out.print("정수 c:"); int c = stdln.nextInt();
+	    
+        int med;
+        if (a >= b)
+          if (b >= c)
+	          med = b; 
+         else if (a <=c)
+	          med = a;
+	       else
+	          med = c;
+	       else if (a > c)
+	          med = a;
+     	else if (b > c)
+	       med = c;
+    	else 
+	       med = b;
+ 
+    	System.out.println("중앙값은 " + med +"입니다." );
+	  }
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+6.
+import java.util.Scanner;
+class MinMaxEq {
+
+   public static void main(String[] args) {
+       Scanner stdln = new Scanner(System.in);
+		
+       System.out.print("정수 a:"); int a = stdln.nextInt();
+       System.out.print("정수 b:"); int b = stdln.nextInt();
+		
+       if (a == b)
+         System.out.println("두 값이 같습니다.");
+       else {
+         int min, max;
+
+       if (a < b) {
+
+		      min= a;
+		      max= b;
+
+    }  else {
+		 min = b;
+		 max = a;
+	  }
+    System.out.println("작은 값은 " + min +"입니다.");
+    System.out.println("큰 값은 " + max +"입니다.");
+   }
+ }
+}
+
+
+
+7.
+import java.util.Scanner;
+
+public class Sort2Descending {
+
+   public static void main(String[] args) {
+		
+       Scanner stdIn = new Scanner(System.in);
+		
+		
+       System.out.print("정수 a:"); int a = stdIn.nextInt();
+       System.out.print("정수 b:"); int b = stdIn.nextInt();
+		
+       if (a<b) {  //a가 b보다 작으면
+
+         int t = a;   //순서를 교환
+         a=b;
+         b=t;
+       }
+		
+       System.out.println("a>=b가 되도록 정렬했습니다.");
+       System.out.println("변수 a는"+a+"입니다.");
+       System.out.println("변수 b는"+b+"입니다.");
+    }
+
+}
+
+
+
+
+
+
+
+
+
+8.
+
+import java.util.Scanner;
+
+public class Sort3 {
+
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+        System.out.print("정수a:"); int a = stdIn.nextInt();
+        System.out.print("정수b:"); int b = stdIn.nextInt();
+        System.out.print("정수c:"); int c = stdIn.nextInt();
+		
+        if (a>b) {  //a가 b보다 크면 a와 b를 교환
+            int t = a; a= b; b= t;
+        }
+		
+        if (b>c) {  //b가 c보다 크면 b와 c를 교환
+            int t = b; b= c; c= t;
+        }
+		
+        if (a>b) {  //a가 b보다 크면 a와 b를 교환
+            int t = a; a= b; b= t;
+        }
+		
+        System.out.println("a<=b,=c가 되도록 정렬했습니다.");
+        System.out.println("변수 a는"+a+"입니다.");
+        System.out.println("변수 b는"+b+"입니다.");
+        System.out.println("변수 c는"+c+"입니다.");
+    }
+
+}
+
+9.
+
+// 생성된 난수에 따라 가위바위보 중 하나를 표시
+import java.util.Random;
+
+public class FingerFlashing {
+    public static void main(String[] args) {
+	Random rand = new Random();
+		
+	System.out.print("컴퓨터가 낸 것:");
+	int hand = rand.nextInt(3);    // 0~2 사이의 난수
+		
+	switch(hand) {
+	case 0: System.out.println("가위"); break;
+	case 1: System.out.println("바위"); break;
+	case 2: System.out.println("보"); break;
+       }
+    }
+ }
+
+
+
+
+
+
+
+
+
+
+10.		
+// 읽은 월의 계절을 표시
+import java.util.Scanner;
+
+public class Season {
+    public static void main(String[] args) {
+	Scanner stdInt = new Scanner(System.in);
+		
+	System.out.print("몇 월입니까?:");
+	int month = stdInt.nextInt();
+		
+	switch(month) {
+	case 3 :
+	case 4 :
+	case 5 : System.out.println("봄"); break;
+	case 6 :
+	case 7 :
+	case 8 : System.out.println("여름"); break;
+	case 9 :
+	case 10:
+	case 11: System.out.println("가을"); break;
+	case 12:
+	case 1 :
+	case 2 : System.out.println("겨울"); break;
+	default: System.out.println("그런 월은 없습니다."); break;
+       }
+    }
+ }
