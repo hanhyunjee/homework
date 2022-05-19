@@ -1,0 +1,378 @@
+1.
+import java.util.Scanner;
+
+class PointSumAve {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+        System.out.print("사람 수 : ");
+        int n = stdIn.nextInt();		            // 사람 수를 입력 받음
+        int[] points = new int[n];		        // 점수
+		
+        System.out.println("점수를 입력하세요.");
+        int sum = 0;
+        for (int i=0; i<n; i++) {
+          System.out.print((i+1) + "번의 점수 : ");
+          points[i] = stdIn.nextInt();// points[i]를 읽는다
+          sum += points[i];		          	 // sum 에 points[i]를 더함
+        }
+        int max = points[0];			        // 최고점
+        int min = points[0];			        // 최저점
+        for (int i=1; i<n; i++) {
+	      if (points[i] > max) max = points[i];
+          if (points[i] < min) min = points[i];
+        }
+        System.out.println("합계는 " + sum + "점입니다.");
+        System.out.println("평균은 " + (double)sum / n + "점입니다.");
+        System.out.println("최고점은 " + max + "점입니다.");
+        System.out.println("최저점은 " + min + "점입니다.");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.
+import java.util.Scanner;
+
+class LinearSearchTop {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+        System.out.print("요소 수 : ");
+        int n = stdIn.nextInt();		             // 요소 수 입력
+        int[] a = new int[n];		     	     // 배열 생성
+		
+        for (int j=0; j<n; j++) {
+          System.out.print("a[" + j + "] = ");
+          a[j] = stdIn.nextInt();
+        }
+		
+        System.out.print("찿을 숫자 : ");
+        int key = stdIn.nextInt();
+		
+        int i;
+        for (i=0; i<n; i++)
+          if (a[i] == key)
+            break;
+
+        if (i<n)
+          System.out.println("그 값은 a[" + i + "]에 있습니다.");
+        else
+          System.out.println("해당 값이 존재하지 않습니다.");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+import java.util.Scanner;
+
+class LinearSearchBottom {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+        System.out.println("요소 수:"); 
+        int n = stdIn.nextInt();                //요소 수 입력
+        int[] a = new int[n];                 // 배열 생성
+			
+        for(int j=0; j<n; j++) {
+          System.out.println("a[" + j + "]= ");
+          a[j]= stdIn.nextInt();
+        }
+		
+        System.out.print("찾을 숫자:");
+        int key = stdIn.nextInt();
+		
+        int i;
+        for(i = n-1; i>=0; i--)
+          if(a[i] == key)
+            break;
+               
+        if(i >=0)            //탐색 성공
+          System.out.println("그 값은 a["+i+"]에 있습니다.");
+        else                //탐색실패
+          System.out.println("해당 값이 존재하지 않습니다.");
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+4.
+import java.util.Scanner;
+
+class ArraySumAve {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+        System.out.print("요소 수:");
+		
+        int n = stdIn.nextInt();
+        double[] a = new double[n];
+		
+        for(int i=0; i<n; i++) {
+          System.out.print("a[" +i+ "]=");
+          a[i]= stdIn.nextDouble();
+        }
+        double sum =0;     
+        for(double i : a)  
+          sum += i;
+		
+        System.out.println("모든 요소의 합은 "+ sum + "입니다.");
+        System.out.println("모든 요소의 합은 "+ sum /n + "입니다.");
+    }
+}
+5. 
+import java.util.Random;
+import java.util.Scanner;
+
+class ArrayRand {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner stdIn= new Scanner(System.in);
+		
+        System.out.print("요소 수:");
+        int n = stdIn.nextInt();	                     //요소 수 읽기
+        int[]a= new int[n];                         //배열 생성
+		
+        for(int i=0; i<n; i++)
+          a[i] = 1 +rand.nextInt(10);               //1~10난수
+
+        for(int i=0; i<n;i++)
+        System.out.println("a[" + i + "] = "+ a[i]);
+    }
+}
+6.
+import java.util.Random;
+import java.util.Scanner;
+
+class ArrayRandX {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner stdIn= new Scanner(System.in);
+		
+        System.out.print("요소 수:");
+        int n = stdIn.nextInt();	                //요소 수 읽기
+        int[]a= new int[n];	                   //배열 생성
+		
+        a[0] = 1 +rand.nextInt(10);
+		
+        for(int i=1; i<n; i++) {
+          do {
+            a[i] = 1+rand.nextInt(10);
+          } while(a[i]==a[i-1]);
+        }
+        for(int i=0; i<n; i++)
+        System.out.println("a[" + i + "] = "+ a[i]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7.
+import java.util.Random;
+import java.util.Scanner;
+
+class ArrayRandY {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner stdIn = new Scanner(System.in);
+		
+        int n;
+        do {
+          System.out.print("요소 수:");
+          n = stdIn.nextInt();
+        } while (n>10);
+        int[] a= new int[n];
+		
+        for (int i=0; i<n; i++) {
+          int j;
+          do {
+            j=0;
+            a[i]=1+rand.nextInt(10);
+            for(;j<i;j++)
+              if (a[j]==a[i]) break;
+			} while (j<i);
+        }
+		
+        for (int i=0; i<n; i++)
+          System.out.println("a["+i+"]="+a[i]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+8.
+import java.util.Random;
+import java.util.Scanner;
+
+class Shuffle {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner stdIn = new Scanner(System.in);
+		
+        System.out.print("요소 수:");
+        int n = stdIn.nextInt();
+        int[] a=new int[n];
+		
+        for (int i=0; i<n; i++) {
+          System.out.print("a["+i+"]=");
+          a[i]=stdIn.nextInt();
+        }
+		
+        for (int i=0; i<2*n; i++) {
+          int idx1 = rand.nextInt(n);
+          int idx2 = rand.nextInt(n);
+          int t = a[idx1];
+          a[idx1]=a[idx2];
+          a[idx2]=t;
+        }
+		
+        System.out.println("요소를 섞었습니다.");
+        for (int i=0; i<n; i++)
+          System.out.println("a["+i+"]="+a[i]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+9.
+import java.util.Scanner;
+
+class CopyArrayReverse {
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+        System.out.print("요소 수:");
+        int n = stdIn.nextInt();
+        int[] a = new int[n];
+        int[] b = new int[n];
+		
+        for (int i=0; i<n; i++) {
+          System.out.print("a[" + i +"] = ");
+          a[i] = stdIn.nextInt();
+        }
+		
+        for (int i=0; i<n; i++) {
+          b[i] = a[n-i-1];
+	    }
+		
+        System.out.println("a의 모든 요소를 역순으로 복사했습니다.");
+		
+        for (int i=0; i<n; i++)
+          System.out.println("b[" + i + "] = " + b[i]);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10.
+import java.util.Random;
+import java.util.Scanner;
+
+class MonthCAI {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner stdIn = new Scanner(System.in);
+        String[] monthString = {
+          "January", "February", "March", "April", "May", "June", "July", 
+          "August", "September", "October", "November", "December"
+        };
+		
+        System.out.println("해당 월의 영어 단어를 입력하시오.");
+        System.out.println("첫 글자는 대문자, 나머지는 소문자로 입력하세요.");
+		
+        int retry;
+        int last = -1;
+		
+        do {
+          int month;
+          do {
+            month = rand.nextInt(12);
+          } while (month == last);
+          last = month;
+			
+          while (true) {
+            System.out.print((month + 1) + "월:");
+            String s = stdIn.next();
+				
+            if (s.equals(monthString[month])) break;
+            System.out.println("틀렸습니다.");
+          }
+          System.out.print("정답입니다. 다시 한번? 1...Yes/0...No:");
+          retry = stdIn.nextInt();
+        } while (retry == 1);
+    }
+}
