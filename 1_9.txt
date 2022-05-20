@@ -34,6 +34,7 @@ class DayCAI1 {
 	     } while (retry == 1);
        }
 }
+
 2.
 import java.util.Random;
 import java.util.Scanner;
@@ -118,22 +119,6 @@ public static void main(String[] args) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 4.
 class PrintArrayVariable {
     public static void main(String[] args) {
@@ -143,44 +128,6 @@ class PrintArrayVariable {
 	System.out.println("a = " + a);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -227,13 +174,6 @@ class MatrixProduct {
 
 
 
-
-
-
-
-
-
-
 6.
 import java.util.Scanner;	
 
@@ -265,20 +205,6 @@ class PointTotalization {
 	System.out.printf("평균%6.1f%6.1f\n",(double)sumSubject[0] / number, (double)sumSubject[1] / number);
     }
 }	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -317,19 +243,6 @@ class UnevennessArray {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 8.
@@ -373,15 +286,6 @@ class PointClass {
 
 
 
-
-
-
-
-
-
-
-
-
 9.
 import java.util.Scanner;
 
@@ -408,28 +312,6 @@ class Sign0f1 {
         System.out.println("sing0f(x)는 " + +s + "입니다.");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 10.
