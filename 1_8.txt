@@ -31,9 +31,6 @@ class PointSumAve {
 
 
 
-
-
-
 2.
 import java.util.Scanner;
 
@@ -64,10 +61,6 @@ class LinearSearchTop {
           System.out.println("해당 값이 존재하지 않습니다.");
     }
 }
-
-
-
-
 
 
 3.
@@ -102,11 +95,6 @@ class LinearSearchBottom {
 }
 
 
-
-
-
-
-
 4.
 import java.util.Scanner;
 
@@ -130,6 +118,7 @@ class ArraySumAve {
         System.out.println("모든 요소의 합은 "+ sum /n + "입니다.");
     }
 }
+
 5. 
 import java.util.Random;
 import java.util.Scanner;
@@ -150,7 +139,6 @@ class ArrayRand {
         System.out.println("a[" + i + "] = "+ a[i]);
     }
 }
-
 
 
 6.
@@ -177,8 +165,6 @@ class ArrayRandX {
         System.out.println("a[" + i + "] = "+ a[i]);
     }
 }
-
-
 
 
 
@@ -212,9 +198,6 @@ class ArrayRandY {
           System.out.println("a["+i+"]="+a[i]);
     }
 }
-
-
-
 
 
 8.
@@ -251,9 +234,6 @@ class Shuffle {
 
 
 
-
-
-
 9.
 import java.util.Scanner;
 
@@ -281,9 +261,6 @@ class CopyArrayReverse {
           System.out.println("b[" + i + "] = " + b[i]);
     }
 }
-
-
-
 
 
 
