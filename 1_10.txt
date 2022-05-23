@@ -1,0 +1,296 @@
+1.
+import java.util.Scanner;
+
+// 1부터 n까지의 합 구하기
+class SumUp1 {
+	//--- 1부터 n까지의 합 ---//
+	static int sumUp(int n) {
+		int sum = 0;		// 합계
+		for (int i=1; i<=n; i++)
+			sum += i;	// sum에 i를 더한다
+		return sum;
+	}
+
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("1부터 x까지의 합을 구하자.");
+		int x;
+		do {
+			System.out.print("x의 값 : ");
+			x = stdIn.nextInt();
+		} while (x <= 0);
+		System.out.print("1부터 " + x + "까지의 합은 " + sumUp(x) + "입니다.");
+	}
+}
+
+
+2.
+// 안녕하세요 라고 표시하는 메소드
+class Hello {
+	//--- 안녕하세요 라고 표시 ---//
+	static void hello() {
+		System.out.println("안녕하세요");
+	}
+
+	public static void main(String[] args) {
+		hello();
+		hello();
+		hello();
+	}
+}
+3.
+import java.util.Scanner;
+
+public class PrintSeason {
+//--- m월의 계절을 표시 ---//
+	static void printSeason(int m) {
+		switch(m) {
+		case 3: case  4: case  5: System.out.print("봄"); break;
+		case 6: case  7: case  8: System.out.print("여름"); break;
+		case 9: case 10: case 11: System.out.print("가을"); break;
+		case 1: case  2: case 12: System.out.print("겨울"); break;
+		}
+	}
+	
+    public static void main(String[] args) {
+    	Scanner stdIn = new Scanner(System.in);
+    	
+    	int month;
+    	do {
+    		System.out.print("몇 월입니까(1 ~ 12)");
+    		month = stdIn.nextInt();
+    	} while(month < 1 || month > 12);
+    	
+    	System.out.print("해당 월의 계절은 ");
+    	printSeason(month);
+    	System.out.print("입니다.");
+    }
+}
+4.
+import java.util.Scanner;
+
+public class SeasonString {
+	//--- m월의 계절을 표시 ---//
+	static String seasonOf(int m) {
+		switch (m) {
+		case 3: case  4: case  5:return "봄";
+		case 6: case  7: case  8:return "여름";
+		case 9: case 10: case 11:return "가을";
+		case 1: case  2: case 12:return "겨율";
+		}
+		return "";    // m이 1~12가 아니면 공백 문자열을 반환
+	}
+
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		int month;
+		do {
+			System.out.print("몇 월입니까(1 ~ 12)");
+			month = stdIn.nextInt();
+    	} while(month < 1 || month > 12);
+		System.out.print("해당 월의 계절은 " + seasonOf(month)+ "입니다.");
+	}
+}
+5.
+import java.util.Scanner;
+
+class IsocelesTriangleLB {
+	//--- 문자c를 n개 연속 표시 ---//
+	static void putChars(char c, int n) {
+		while (n-- > 0)
+		System.out.print(c);
+	}
+	
+	//---문자 '*'를 n개 연속 표시 ---//
+	static void putChars(int n) {
+		putChars('*', n);
+	}
+	
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("왼쪽 아래가 직각인 이등변 삼각현을 표시합니다.");
+		System.out.print("단수는:");
+		int n = stdIn.nextInt();
+		for (int i = 1; i <= n; i++) {
+		putChars(i);
+		System.out.println();
+		}
+	}
+}
+6.
+import java.util.Random;
+import java.util.Scanner;
+
+class RandomTester {
+	//---a이상 b이하의 난수 생성 ---//
+	static int random(int a, int b) {
+		if (b <= a)
+		return a;
+		else {
+			Random rand = new Random();
+			return a + rand.nextInt(b - a + 1);
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("난수를 생성합니다.");
+		System.out.print("하한값 : "); int min = stdIn.nextInt();
+		System.out.print("상한값 : "); int max = stdIn.nextInt();
+		
+		System.out.println("생성한 난수는 " + random(min, max) + "입니다.");
+	}
+}
+7.
+import java.util.Scanner;
+
+class InverseNumber {
+    static Scanner stdIn = new Scanner(System.in);
+		
+    static int readPlusInt() {
+        int x;
+        do {
+          System.out.print("양의 정숫값:");
+          x= stdIn.nextInt();
+        } while (x <= 0);
+        return x;
+    }
+	
+    public static void main(String[]args) {
+        int x;
+        do {
+          int n = readPlusInt();
+			  
+          System.out.print("반대로 읽으면 ");
+          while (n>0) {
+            System.out.print(n%10);
+            n/=10;
+          }
+          System.out.println("입니다.");
+			  
+          do {
+            System.out.print("다시 한 번?<Yes...1/No...0>:");
+            x=stdIn.nextInt();
+          } while (x!=0 && x!=1);
+        } while (x == 1);
+    }	  
+}
+8.
+import java.util.Random;
+import java.util.Scanner;
+
+class MentalArithmetic {
+    static Scanner stdIn = new Scanner(System.in);
+    static boolean confirmRetry() {
+        int cont; do {
+          System.out.print("다시 한 번? <Yes...1/No...0>:");
+          cont = stdIn.nextInt();
+        }while (cont !=0 && cont !=1);
+        return cont ==1;
+    }
+
+    public static void main(String[] args) {
+        Random rand = new Random ();
+        System.out.println("암산 훈련!!");
+		
+        do {
+          int x = rand.nextInt(900)+100;
+          int y = rand.nextInt(900)+100;
+          int z = rand.nextInt(900)+100;
+          int pattern = rand.nextInt(4);
+			
+          int answer;
+          switch (pattern) {
+            case 0 : answer = x+y+z; break;
+            case 1 : answer = x+y-z; break;
+            case 2 : answer = x-y+z; break;
+            default : answer = x-y-z; break;
+          }
+          while (true) {
+            System.out.print(x+((pattern<2)      ? " + " : " - " )+
+                        y+((pattern%2==0)?"+":"-")+
+                        z+"=");
+			   
+            int k = stdIn.nextInt();
+            if (k==answer)
+              break;
+            System.out.println("틀렸습니다!");
+          }
+        } while (confirmRetry());
+    }
+}
+9.
+import java.util.Scanner;
+
+class ShiftValue {
+	//--- 2의 거듭 제곱 반환 ---//
+    static int pow2(int no ) {
+    int pw = 1;
+	while (no-- > 0)
+	    pw *= 2;
+	return pw;
+    }
+	
+public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+		
+    System.out.println("정수x를 n비트 시프트합니다.");
+    System.out.print("x: "); int x = stdIn.nextInt();
+    System.out.print("n: "); int n = stdIn.nextInt();
+		
+    int mPower = x * pow2(n);	// 2의 n승을 곱한 값
+    int dPower = x / pow2(n);	// 2의 n승으로 나눈 값	
+    int lShift = x << n;		// n비트 왼쪽으로 시프트한 값
+    int rShift = x >> n;		// n비트 오른쪽으로 시프트한 값
+		
+    System.out.printf("[a] X x (2의 %d승) = %d\n", n, mPower);
+    System.out.printf("[b] X ÷ (2의 %d승) = %d\n", n, dPower);
+    System.out.printf("[b] X << %d = %d\n", n, lShift);
+    System.out.printf("[b] X >> %d = %d\n", n, rShift);
+		
+    System.out.println("[a]와 [c]의 값이 일치" + 
+			        ((mPower == lShift) ? "합니다." : "하지 않습니다."));
+    System.out.println("[b]와 [d]의 값이 일치" + 
+				((dPower == rShift) ? "합니다." : "하지 않습니다.")	
+    }
+}
+10.
+import java.util.Scanner;
+
+class Rotate {
+    //--- int형 비트 구성 ---//
+    static void printBits(int x) {
+	for (int i=31; i>=0; i--) 
+	    System.out.print(((x >>> i & 1) == 1) ? '1' : '0');
+    }
+	
+    //--- x를 오른쪽으로 n비트 회전한 값 반환 ---//
+    static int rRotate(int x, int n) {
+        if (n<0) return lRotate(x, -n);
+		n %= 32;
+		return (n == 0 ? x : ( x >>> n) | (x << (32-n)));
+    }
+    //--- x를 왼쪽으로 n비트 회전한 값 반환 ---//
+    static int lRotate(int x, int n) {
+        if (n<0) return rRotate(x, -n);
+		n %= 32;
+		return (n == 0 ? x : ( x << n) | (x >>> (32-n)));
+    }
+
+    public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("정수x를 n비트 회전합니다.");
+		System.out.print("x:"); int x = stdIn.nextInt();
+		System.out.print("n:"); int n = stdIn.nextInt();
+		System.out.println("회전 전 = "); printBits(x);
+		
+		System.out.println("\n오른쪽 회전 = "); printBits(rRotate(x,n));
+		System.out.println("\n왼쪽 회전 = "); printBits(lRotate(x,n));
+		System.out.println();
+    }
+}
