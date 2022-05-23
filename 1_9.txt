@@ -184,7 +184,7 @@ class PointTotalization {
 	final int number = 6;				// 사람 수
 	int [][] point = new int [number][2];		// 정수
 	int [] sumStudent = new int [number];		// 학생별 점수 합계
-	int [] sumSubject = new int [2];			// 각 과목의 점수 합계
+	int [] sumSubject = new int [2];		// 각 과목의 점수 합계
 	
 	System.out.printf("%d명의 국어, 수학 점수를 입력하세요.\n", number);
 	
@@ -195,8 +195,8 @@ class PointTotalization {
 	    point[i][1] = stdIn.nextInt();
 		
 	    sumStudent[i] = point[i][0] + point [i][1];		// 학생의 합계
-	    sumSubject[0] = point[i][0];				// 국어 합계
-	    sumSubject[1] = point[i][1];				// 수학 합계
+	    sumSubject[0] = point[i][0];			// 국어 합계
+	    sumSubject[1] = point[i][1];			// 수학 합계
 	}
 	
 	System.out.println("No. 국어     수학     평균");

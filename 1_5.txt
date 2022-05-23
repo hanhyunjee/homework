@@ -243,7 +243,8 @@ public class SumBreak2Ave {
 	    for(i=0; i<n; i++) {
 		System.out.print("정수:");
 		int t = stdIn.nextInt();
-		if(sum+t >1000) {				                                              System.out.println("합계가 1,000을 넘었습니다.");
+		if(sum+t >1000) {				                                              
+		System.out.println("합계가 1,000을 넘었습니다.");
 			System.out.println("마지막 값은 무시합니다.");
 			break;
 		}
