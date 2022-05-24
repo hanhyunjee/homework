@@ -83,12 +83,6 @@ class SetBits {
 }
 
 
-
-
-
-
-
-
 3-1.
 
 import java.awt.Taskbar.State;
@@ -117,26 +111,8 @@ public class SumOf1 {
 			x[i] = stdIn.nextInt();
 		}			
 		System.out.println("모든 요소의 합은 " + sumOf(x) + "입니다.");
+	}
 }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 3-2.
@@ -155,6 +131,7 @@ static int sumOf(int[]a) {
 
 }
 
+
 public static void main(String[] args) {
 	Scanner stdIn = new Scanner(System.in);
 	
@@ -168,24 +145,8 @@ public static void main(String[] args) {
 	}
 	
 	System.out.println("모든 요소의 합은 " + sumOf(x) + "입니다.");
-
+   }
 }
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -223,10 +184,10 @@ public class minOfHeightWeight {
 			
 		System.out.println("가장 키가 작은 사람의 신장:" + minOf(height)+ "cm");
 		System.out.println("가장 마른 사람의 체중:" + minOf(weight)+ "kg");
-
 	}
-
 }
+
+
 5. 
 
 package G052322;
@@ -277,6 +238,8 @@ public static void main(String[] args) {
 		}
 	}
 }
+
+
 6.
 
 package G052322;
@@ -312,19 +275,6 @@ class AryRmv {
 			System.out.println("a[" + i + "] ="  + a[i]);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 7.
@@ -367,16 +317,6 @@ class AryRmvN {
 
 
 
-
-
-
-
-
-
-
-
-
-
 8.
 
 
@@ -414,16 +354,6 @@ class AryIns {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
