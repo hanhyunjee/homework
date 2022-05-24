@@ -1,6 +1,7 @@
 1.
 import java.util.Scanner;
 
+
 // 1부터 n까지의 합 구하기
 class SumUp1 {
 	//--- 1부터 n까지의 합 ---//
