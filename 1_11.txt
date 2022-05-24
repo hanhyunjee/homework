@@ -89,7 +89,7 @@ import java.awt.Taskbar.State;
 import java.nio.file.spi.FileSystemProvider;
 import java.util.Scanner;
 
-public class SumOf1 {
+class SumOf1 {
 //---배열 a의 모든 요소의 합을 구한다.---//
 	
 	static int sumOf(int[]a) {
@@ -119,7 +119,7 @@ public class SumOf1 {
 
 import java.util.Scanner;
 
-public class SumOf2{
+class SumOf2{
 
 static int sumOf(int[]a) {
 	
@@ -190,7 +190,6 @@ public class minOfHeightWeight {
 
 5. 
 
-package G052322;
 import java.util.Scanner;
 
 class LinearSearch {
@@ -241,8 +240,6 @@ public static void main(String[] args) {
 
 
 6.
-
-package G052322;
 
 import java.util.Scanner;
 
