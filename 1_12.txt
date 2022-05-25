@@ -45,11 +45,6 @@ class ArraySearchIndex {
 }
 
 
-
-
-
-
-
 2.
 import java.util.Scanner;
 
@@ -91,14 +86,6 @@ class ArrayRemoveOf {
 			System.out.println("y[" + i + "] = " + y[i]);
 	}
 }
-
-
-
-
-
-
-
-
 
 
 3.
@@ -204,8 +191,6 @@ public class ArrayInsOf {
 }
 
 
-
-
 5.
 
 package G052422;
@@ -245,13 +230,6 @@ class AddMatrix {
 	}
 
 }
-
-
-
-
-
-
-
 
 
 6.
@@ -304,7 +282,6 @@ class AryClone2 {
 }
 
 
-
 7.
 
 import java.util.Scanner;
@@ -345,20 +322,6 @@ class Min {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 8.
 
 import java.util.Scanner;
@@ -389,24 +352,6 @@ class Absolute {
 		System.out.println("d의 절댓값은 "+ absolute(d) + "입니다.");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -453,12 +398,6 @@ class PrintBits {
 	}
 
 }
-
-
-
-
-
-
 
 
 10.
