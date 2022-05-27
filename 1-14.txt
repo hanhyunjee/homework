@@ -1,0 +1,432 @@
+1.
+public class Human {
+	private String name;	// 이름
+	private int height;		// 신장
+	private int weight;		// 체중
+	
+//	생성자
+	Human(String n, int h, int w) {
+		name = n; height = h; weight = w;
+	}
+	
+	String getName() {return name;}		// 이름 가져오기
+	int getHeight() {return height;}		// 신장 불러오기
+	int getWeight() {return weight;}		// 체중 불러오기
+	
+	void gainWeight(int w) {weight += w;} 	// 살이 찐다
+	void reduceWeight(int w) {weight -= w;} // 살이 빠진다
+}
+
+1_2.
+import java.util.Scanner;
+
+public class HumanArrayTester {
+	// Human형 1차원 배열의 모든 요소를 표시
+	static void printHumanArray(Human[] a) {
+		for (int i=0; i<a.length; i++)
+			System.out.printf("No.%d %s %3dcm %3dkg\n",
+					i, a[i].getName(), a[i].getHeight(), a[i].getWeight());
+	}
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		int n;
+		
+//		1차원 배열
+//		생성과 동시에 초기화
+		Human[] p = {
+				new Human("철수", 170, 70),
+				new Human("길동", 160, 59),
+		};
+		
+//		배열과 각각의 인스턴스를 개별적으로 생성
+		System.out.print("배열 q의 요소 수: ");
+		n = stdIn.nextInt();
+		
+		Human[] q = new Human[n];
+		for (int i=0; i<q.length; i++) {
+			System.out.println("q[" + i + "]");
+			System.out.print("이름:"); String name = stdIn.next();
+			System.out.print("신장:"); int height = stdIn.nextInt();
+			System.out.print("체중:"); int weight = stdIn.nextInt();
+			q[i] = new Human(name, height, weight);
+		}
+		
+//		2차원 배열
+//		생성과 동시에 초기화(3행 2열)
+		Human[][] x = {
+				{ new Human("김철수", 175, 52), new Human("김영희", 169, 60)},
+				{ new Human("홍길동", 178, 70), new Human("이철수", 172, 61)},
+				{ new Human("이영희", 168, 59), new Human("김길동", 165, 59)},
+		};
+//		배열과 각각의 인스턴스를 개별적으로 생성(불규칙 배열)
+		System.out.print("배열 y의 행 수 : ");
+		n = stdIn.nextInt();
+		
+		Human[][] y = new Human[n][];
+		for(int i=0; i<y.length; i++ ) {
+			System.out.print("y[" + "]의 열 수 : ");
+			n = stdIn.nextInt();
+			y[i] = new Human[n];
+			for (int j=0; j<y[i].length; j++) {
+				System.out.println("q[" + i + "]");
+				System.out.print("이름:"); String name = stdIn.next();
+				System.out.print("신장:"); int height = stdIn.nextInt();
+				System.out.print("체중:"); int weight = stdIn.nextInt();
+				y[i][j] = new Human(name, height, weight);
+			}
+		}
+
+//		출력
+//		1차원 배열
+		System.out.println("■배열 p");
+		printHumanArray(p);
+		
+		System.out.println("■배열 q");
+		printHumanArray(q);
+		
+//		2차원 배열
+		System.out.println("■배열 x");
+		for (int i=0; i<x.length; i++) {
+			System.out.printf("%d행\n", i);
+			printHumanArray(x[i]);
+		}
+		
+		System.out.println("■배열 y");
+		for (int i=0; i<y.length; i++) {
+			System.out.printf("%d행\n", i);
+			printHumanArray(y[i]);
+		}
+	}
+}
+2.
+public class Day {
+	private int year = 1;
+	private int month = 1;
+	private int date = 1;
+//	생성자
+	public Day() {}
+	public Day(int year) {this.year = year;}
+	public Day(int year, int month) {this(year); this.month = month;}
+	public Day(int year, int month, int date) {this(year, month); this.date = date;}
+	public Day(Day d) {this(d.year, d.month, d.date);}
+//	년, 월, 일 불러오기
+	public int getYear() {return year;}
+	public int getMonth() {return month;}
+	public int getDate() {return date;}
+//	년, 월, 일 설정
+	public void setYear(int year) {this.year = year;}
+	public void setMonth(int month) {this.month = month;}
+	public void setDate(int date) {this.date = date;}
+	
+	public void set(int tear, int month, int date) {
+		this.year = year;
+		this.month = month;
+		this.date = date;
+	}
+//	요일찾기
+	public int dayOfWeek() {
+		int y = year;
+		int m = month;
+		if (m == 1 || m == 2) {
+			y--;
+			m+= 12;
+		}
+		return (y + y / 4 - y / 100 + y / 400 + (13*m+8) / 5 + date ) % 7;
+	}
+//	날짜 d와 같은가?
+	public boolean equalTo(Day d) {
+		return year == d.year && month == d.month && date == d.date;
+	}
+	
+//	문자열 표현 반환
+	public String toString() {
+		String[] wd = {"일", "월", "화", "수", "목", "금", "토"};
+		return String.format("%04d년 %02d월 %02d일(%s)",
+							year, month, date, wd[dayOfWeek()]);
+	}
+}
+3.
+import java.util.Scanner;
+
+public class DayTester {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("day1을 입력하자.");
+		System.out.print("년:");int y = stdIn.nextInt();
+		System.out.print("월:");int m = stdIn.nextInt();
+		System.out.print("일:");int d = stdIn.nextInt();
+		
+		Day day1 = new Day(y, m, d);  //읽은 날짜
+		System.out.println("day1 =" + day1);
+		
+		Day day2 = new Day(day1);     //day1과 같은 날짜
+        System.out.println("day2를 day1과 같은 날짜로 만들었습니다.");
+		System.out.println("day2 =" + day2);
+		
+		if(day1.equalTo(day2))
+			System.out.println("day1과 day2가 같습니다.");
+		else
+			System.out.println("day1과 day2가 다릅니다.");
+		
+		Day d1 = new Day();                         //    1년  1월  1일
+		Day d2 = new Day(2017);                     // 2017년  1월  1일
+		Day d3 = new Day(2017, 10);                 // 2017년 10월  1일
+		Day d4 = new Day(2017, 10, 15);             // 2017년 10월 15일
+		
+		System.out.println("d1 = " + d1);
+		System.out.println("d2 = " + d2);
+		System.out.println("d3 = " + d3);
+		System.out.println("d4 = " + d4);
+		
+		Day[] a = new Day[3];  //요소 수 3의 Day형 배열
+		for(int i = 0; i < a.length; i++)
+			a[i] = new Day();  //모든 요소를 1년 1월 1일로 설정
+		
+		for (int i = 0; i < a.length; i++)
+			System.out.println("a["+ i + "]=" + a[i]);
+	}
+}
+
+4.
+public class Account {
+	private String name;     //계좌 명의
+	private String no;       //계좌 번호
+	private long balance;    //예금 잔고
+	
+	//---생성자---//
+	Account(String n, String num, long z){
+	name = n;               //계좌 명의
+	no = num;               //계좌 번호
+	balance = z;            //예금 잔고
+	}
+	
+	
+	//---계좌 명의 확인---//
+	String getName() {
+		return name;
+	}
+	//---계좌 번호 확인---//
+	String getNo() {
+		return name;
+	}
+	//---예금 잔고 확인---//
+	String getBalance() {
+		return name;
+	}
+	//---k원 입금---//
+	void deposit(long k) {
+		balance += k;
+	}
+	//---k원 출금---//
+	void withdraw(long k) {
+		balance += k;
+	
+	}
+}
+5.
+class Account {
+  private String name;
+  private String no;
+  private long balance;
+  private Day openDay;
+  
+  public Account(String n, String num, long z, Day d) {
+	name = n;
+	no = num;
+	balance = z;
+	openDay = new Day(d);
+  }
+  
+  public String getName() {
+	  return name;
+  }
+  
+  public String getNo() {
+	  return no;
+  }
+  
+  public long getBalance() {
+	  return balance;
+  }
+  
+  public Day getOpenDay() {
+	  return new Day(openDay);
+  }
+  
+  void deposit(long k) {
+	  balance += k;
+  }
+  
+  void wirhdraw(long k) {
+	  balance -= k;
+  }
+  
+  public String toString() {
+	  return "{" + name + ", " + no + ", " + balance + "}";
+  }
+}
+
+6.
+class AccountTester1 {
+  public static void main(String[] args) {
+	Day d = new Day(2010, 10, 15);
+	Account gildong = new Account("길동", "125768", 100, d);
+	
+	Day p = gildong.getOpenDay();
+	System.out.println("계좌 개설일:" + p);
+	
+	p.set(1999, 12, 31);
+	
+	Day q = gildong.getOpenDay();
+	System.out.println("계좌 개설일:" + q);
+	}
+}
+
+7.
+import java.util.Scanner;
+
+class AccountTester2 {
+  public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+		
+    System.out.println("계좌 정보를 입력하세요.");
+    System.out.print("명   의:");
+    String name = stdIn.next();
+    System.out.print("번   호:");
+    String no = stdIn.next();
+    System.out.print("잔   고:");
+    long balance = stdIn.nextLong();
+    System.out.print("개설 연도:");
+    int y = stdIn.nextInt();
+    System.out.print("개설 월:");
+    int m = stdIn.nextInt();
+    System.out.print("개설 일:");
+    int d = stdIn.nextInt();
+		
+    Account a = new Account(name, no, balance, new Day(y,m,d));
+		
+    System.out.println("계좌 기본 정보:" + a);
+    System.out.println("개설일:"+a.getOpenDay().toString());
+    }
+}
+
+8.
+public class Human {
+    private String name;
+    private int height;
+    private int weight;
+    private Day birthday;
+	
+    public Human(String name, int height, int weight, Day birthday) {
+        this.name = name;
+        this.height = height;
+        this.weight = weight;
+        this.birthday = new Day(birthday);
+    }
+
+    public String getName() {return name;}
+    public int getHeight() {return height;}
+    public int getWeight() {return weight;}
+    public Day getBirthDay() {return new Day(birthday);}
+	
+    public void gainWeight(int w) {weight += w;}
+    public void reduceWeight(int w) {weight -= w;}
+
+    public void putData() {
+        System.out.println("이름 : " + name);
+        System.out.println("신장 : " + height + "cm");
+        System.out.println("체중 : " + weight + "kg");
+	}
+	
+    public String toString() {
+        return "{" + name + ":" + height + "cm" + weight + "kg" + birthday + "출생}";
+    }
+}
+
+public class HumanTester1 {
+    public static void main(String[] args) {
+
+        Human gildong = new Human("길동", 170, 60, new Day(1975, 3, 12));
+        Human chulsu = new Human("철수", 166, 72, new Day(1987, 10, 7));
+		
+        System.out.println("gildong = " + gildong);
+        System.out.println("gildong = " + chulsu);
+    }
+}
+9.
+public class Period {
+    private Day from;
+    private Day to;
+	
+    public Period(Day from, Day to) {
+        this.from = new Day(from);
+        this.to = new Day(to);
+    }
+	
+    public Day getFrom() {return new Day(from);}
+    public Day getTo() {return new Day(to);}
+	
+    public String toString() {
+        return "{" + from + "~" + to + "}";
+    }
+}
+
+public class PeriodTester {
+    public static void main(String[] args) {
+        Period taejo = new Period(new Day(1392, 8, 5), new Day(1398, 10, 14));
+        Period jeongjong = new Period(new Day(1398, 10, 14), new Day(1400, 11, 28));
+        Period taejong = new Period(new Day(1400, 11, 28), new Day(1418, 9, 9));
+        Period sejong = new Period(new Day(1418, 9, 9), new Day(1450, 3, 30));
+		
+        System.out.println("태조 = " + taejo);
+        System.out.println("정종 = " + jeongjong);
+        System.out.println("태종 = " + taejong);
+        System.out.println("세종 = " + sejong);
+    }
+}
+
+10.
+import org.w3c.dom.css.Counter;
+
+public class Human {
+    private static int counter = 0;
+    private String name;
+    private int height;
+    private int weight;	
+    private int id;
+	
+    public Human(String name, int height, int weight){
+        this.name = name; this.height = height; this.weight = weight;
+        id = ++counter;
+    }
+    public String getName() {return name;}
+    public int getHeight() {return height;}
+    public int getWeight() {return weight;}
+	
+    public void gainWeight(int w) {weight += w;}
+    public void reduceWeight(int w) {weight -= w;}
+	
+    public int getId() {return id;}
+	
+    public void putData() {
+        System.out.println("이름 : " + name	);
+        System.out.println("신장 : " + height + "cm");
+        System.out.println("체중 : " + weight + "kg");
+    }
+}
+
+public class HumanTester {
+    public static void main(String[] args) {
+        Human4 gildong = new Human4("홍길동", 170, 60);
+        Human4 chulsu = new Human4("김철수", 166, 72);
+		
+        gildong.putData();
+        System.out.println("번호: " + gildong.getId());
+		
+        System.out.println();
+		
+        chulsu.putData();
+        System.out.println("번호 : " + chulsu.getId());
+    }
+}
