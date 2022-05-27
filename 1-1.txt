@@ -1,4 +1,5 @@
-1
+1.
+
 import java.util.Scanner;
 
 class Nagative {
@@ -15,7 +16,8 @@ class Nagative {
 }
 
 
-2-1
+2-1.
+
 import java.util.Scanner;
 
 public class Absolute1 {
@@ -59,7 +61,8 @@ class Absolute2 {
 }
 
 
-3
+3.
+
 import java.util.Scanner;
 
 public class Measure1 {
@@ -78,7 +81,8 @@ public class Measure1 {
 }
 
 
-4
+4.
+
 import java.util.Scanner;
 
 public class Measure2 {
@@ -96,7 +100,8 @@ public class Measure2 {
    }
 }
 
-5
+5.
+
 import java.util.Scanner;
 
 class Sign{
@@ -116,7 +121,8 @@ class Sign{
 	}
 }
 
-6
+6.
+
 import java.util.Scanner;
 
 
@@ -140,7 +146,7 @@ class Balance {
 }
 
 
-7
+7.
 
 import java.util.Scanner;
 
@@ -165,7 +171,7 @@ class GoInto5 {
 }
 
 
-8
+8.
 
 import java.util.Scanner;
 
@@ -190,23 +196,8 @@ class MultipleOf10 {
   }
 }
 
+9.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9
 import java.util.Scanner;
 
 public class Modulo3 {
@@ -229,7 +220,8 @@ public class Modulo3 {
    }
 }
 
-10
+10.
+
 import java.util.Scanner;
 
 class Grade1 {
