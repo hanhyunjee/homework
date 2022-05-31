@@ -1,7 +1,6 @@
 1.
 
 import java.util.Scanner;
-
 public class DayTester {
 	static Scanner stdIn = new Scanner(System.in);
 	
@@ -112,6 +111,7 @@ public class DayTester {
 		}
     }
 }
+
 2.
 
 import java.util.GregorianCalendar;
@@ -150,18 +150,6 @@ public class Point2D {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 3.
 
 public Point2D() {
@@ -195,21 +183,6 @@ public class Point2DTester {
       }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 4-1.
@@ -297,21 +270,6 @@ class AccountTester {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 5.
 
 import java.util.GregorianCalendar;
@@ -338,28 +296,6 @@ class LuckyDraw {
     System.out.println("입니다.");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 6.
@@ -389,8 +325,6 @@ class LuckyDraw2 {
     System.out.println("입니다.");
   }
 }
-
-
 
 
 7.
@@ -442,8 +376,6 @@ public class DateId {
     return id;
   }
 }
-
-
 
 
 8-1.
