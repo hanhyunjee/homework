@@ -1,5 +1,5 @@
-1.
 
+1.
 
 public class Id {
 	static int counter = 0;	// 몇 번까지 식별 부여를 부여했는가
@@ -29,8 +29,8 @@ public class IdTester {
 		System.out.println("b.couter = " + b.counter);
 	}
 }
-2.
 
+2.
 
 public class Id {
 	private static int counter = 0;	// 몇 번까지 식별 부여를 부여했는가
@@ -50,7 +50,6 @@ public class Id {
 	}
 }
 
-
 public class IdTester {
 	public static void main(String[] args) {
 		Id a = new Id();		// 식별 번호 1번
@@ -65,21 +64,8 @@ public class IdTester {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 3.
+
 public class ExId {
 	static int counter = 0;             //몇 번까지 식별 부여를 부여했는가
 	private static int step=1;          //증가치
@@ -107,6 +93,7 @@ public class ExId {
 }
 
 3-1.
+
 public class ExIdTester{
 	 public static void main(String[] args) {
 		 ExId a = new ExId();         //식별 번호 1번
@@ -129,6 +116,7 @@ public class ExIdTester{
 		 System.out.println("다음에 부여할 식별 번호 = " + (max + ExId.getStep()));
 	 }
 }
+
 4.
 
 // 각 정수형이 표현할 수 있는 수치 범위를 표시
@@ -144,8 +132,6 @@ public class IntegerLimits {
 	}
 
 }
-
-
 
 5.
 
@@ -166,18 +152,7 @@ class MathMethods {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
 6_1
-
 
 public class MinMax {
   //---a, b의 최솟값 반환 ---//
@@ -250,34 +225,7 @@ public class MinMax {
 	}
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 6_2 
-
 
 import java.util.Scanner;
 
@@ -314,17 +262,6 @@ public class MinMaxTester {
       System.out.println("}입니다.");
    }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 7.
 
@@ -508,22 +445,6 @@ public class Day {
     return temp;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 9_4.
