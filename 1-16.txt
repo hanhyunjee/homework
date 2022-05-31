@@ -1,0 +1,464 @@
+1.
+
+import java.util.Scanner;
+
+public class DayTester {
+	static Scanner stdIn = new Scanner(System.in);
+	
+	// 날짜 관련 정보 표시
+	static void display(Day day) {
+		System.out.println(day + "에 관한 정보");
+		System.out.println("윤년" + (day.isLeap() ? "입니다." : "이 아닙니다."));
+		System.out.println("연도 내 경과 일수 : " + day.dayOfYear());
+		System.out.println("연도 내 잔여 일수 : " + day.leftDayOfYear());
+	}
+	
+	// 날짜 변경
+	static void change(Day day) {
+		System.out.println("[1]연월일을 변경 [2]연을 변경");
+		System.out.println("[3]월을 변경 [4]일을 변경");
+		System.out.println("[5]1일 뒤 [6]1일 앞");
+		System.out.print("[7]n일 뒤 [8]n일 앞");
+		
+		int change = stdIn.nextInt();
+		int y = 0, m = 0, d = 0, n = 0;
+		if(change == 1 || change == 2) {
+			System.out.print("연:"); y = stdIn.nextInt();
+		}
+		if(change == 1 || change == 3) {
+			System.out.print("월:"); m = stdIn.nextInt();
+		}
+		if(change == 1 || change == 4) {
+			System.out.print("일:"); d = stdIn.nextInt();
+		}
+		if(change == 1 || change == 8) {
+			System.out.print("며칠:"); n = stdIn.nextInt();
+		}
+		
+		switch (change) {
+		case 1: day.set(y, n, d); break;	// y년m월d일로 설정
+		case 2: day.setYear(y); break;	// y년으로 설정
+		case 3: day.setMonth(m); break;	// m월으로 설정
+		case 4: day.setDate(d); break;	// d일로 설정
+		case 5: day.succeed(); break;	// 하루 후
+		case 6: day.precede(); break;	// 하루 전
+		case 7: day.succeedDays(n); break;	// n일 후
+		case 8: day.precedeDays(n); break;	// n일 전
+		}
+		System.out.println(day + "로 변경됐습니다.");
+	}
+	
+	// 다른 날짜와 비교
+	static void compare(Day day) {
+		System.out.println("비교 대상 날짜를 입력하자.");
+		System.out.print("연:"); int y = stdIn.nextInt();
+		System.out.print("월:"); int m = stdIn.nextInt();
+		System.out.print("일:"); int d = stdIn.nextInt();
+		
+		Day d2 = new Day(y,m,d); // 비교 대상 날짜
+		
+		int comp = day.compareTo(d2); // int comp = compare(day, d2);도 가능
+		System.out.print(day);
+		switch (comp) {
+		case -1: System.out.println("가 앞"); break;
+		case 1: System.out.println("가 뒤"); break;
+		case 0: System.out.println("와 같다."); break;
+		}
+	}
+	
+	// 전후 날짜
+	static void beforeAfter(Day day) {
+		System.out.print("[1]내일 [2]어제 [3]n일 후 [4]n일 전:");
+		int type = stdIn.nextInt();
+		int n = 0;
+		if (type == 3 || type == 4) {
+			System.out.print("며칠 : ");
+			n = stdIn.nextInt();
+		}
+		
+		System.out.print("이 날은");
+		switch (type) {
+		case 1: System.out.print(day.succeedingDay()); break; // 하루 뒤
+		case 2: System.out.print(day.precedingDay()); break; // 하루 앞
+		case 3: System.out.print(day.after(n)); break; // n일 후
+		case 4: System.out.print(day.before(n)); break; // n일 전
+		}
+		System.out.println("입니다");
+	}
+	
+	public static void main(String[] args) {
+		System.out.println("날짜를 입력하세요.");
+		System.out.print("연:"); int y = stdIn.nextInt();
+		System.out.print("월:"); int m = stdIn.nextInt();
+		System.out.print("일:"); int d = stdIn.nextInt();
+		
+		Day day = new Day(y,m d);		// 읽은 날짜
+		
+		while (true) {
+			System.out.print(
+					"[1]날짜 관련 정보 표시 [2]날짜 변경 [3]다른 날짜와 비교\n" + 
+					"[4]전후 날짜 [5] 종료 : "
+					);
+			
+			int menu = stdIn.nextInt();
+			if (menu == 5) break;
+			
+			switch (menu) {
+			case 1: display(day); break;	// 날짜 관련 정보 표시
+			case 2: change(day); break;		// 날짜 변경
+			case 3: compare(day); break;	// 다른 날짜와 비교
+			case 4: beforeAfter(day); break;// 전후 날짜 구하기
+			}
+		}
+    }
+}
+2.
+
+import java.util.GregorianCalendar;
+import static java.util.GregorianCalendar.*;
+
+public class Point2D {
+    private static int counter = 0;
+    private static int day;
+	
+    private int x=0;
+    private int y=0;
+	
+    static {
+      GregorianCalendar today = new GregorianCalendar();
+      day = today.get(DATE);
+    }
+	
+    {
+      if(++counter ==day) {
+        System.out.print("당첨");
+        System.out.printf("오늘 %d개의 좌표가 생성됐습니다.\n", counter);
+      }
+    }
+	
+    public Point2D() { }
+    public Point2D(int x) {this.x = x; }
+    public Point2D(int x, int y) {this.x = x; this.y = y; }
+
+    public int getX() {return x;}
+    public int getY() {return y;}
+	
+    public static int getCounter() { return counter; }
+    public String toString() {
+      return"(" +x+","+y+")";
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3.
+
+public Point2D() {
+    if (++counter ==day) {
+      System.out.print("당첨!!");
+      System.out.printf("오늘 %d개의 좌표가 생성됐습니다.\n", counter);
+    }
+}
+
+public Point2D(int x) {
+    if(++counter ==day) {
+      System.out.print("당첨!!");
+      System.out.printf("오늘 %d개의 좌표가 생성됐습니다.\n", counter);
+    }
+    this.x = x;
+}
+
+public Point2D(int x, int y) {
+    if(++counter ==day) {
+      System.out.print("당첨!!");
+      System.out.printf("오늘 %d개의 좌표가 생성됐습니다.\n", counter);
+    }
+    this.x = x;  this.y =y;	
+}
+
+public class Point2DTester {
+    public static void main(String[] args) {
+      for (int i=0; i<36; i++) {
+        Point2D p1 = new Point2D();
+        System.out.printf("%2d %s\n",i,p1);
+      }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4-1.
+
+class Account {
+    private static int counter = 0;
+	
+    private String name;
+    private String no;
+    private long balance;
+    private Day openDay;
+    private int id;
+	
+    {
+      id = ++counter;
+      System.out.println("은행 계좌를 개설해주셔서 감사합니다.");
+		
+    }
+    public Account (String name, String no) {
+      this(name, no, 0, new Day());
+    }
+
+    public Account (String name, String no, long balance, Day openDay) {
+      this.name = name;
+      this.no = no;
+      this.balance = balance;
+      this.openDay = new Day(openDay);
+    }
+    public String getName() {
+      return name;
+    }
+    public String getNo() {
+      return no;
+    }
+    public long getBalance() {
+      return balance;
+    }
+    public Day getOpenDay() {
+      return new Day(openDay);
+    }
+    public int getId() {
+      return id;
+    }
+    void deposit(long k) {
+      balance -= k;
+    }
+    public String toString() {
+      return "{"+name+","+no+","+balance+"}";
+    }	
+}
+
+
+4-2.
+
+import java.util.Scanner;
+
+class AccountTester {
+  public static void main(String[] args) {
+    Scanner stdIn = new Scanner(System.in);
+    System.out.print("계좌 개설 수:");
+    int n = stdIn.nextInt();
+    Account[] a=new Account[n];
+		
+    for (int i=0; i<a.length; i++) {
+      System.out.print("[0]...간이 [1]_상세:");
+      int type = stdIn.nextInt();
+			
+      System.out.println("계좌 정보를 입력하세요.");
+      System.out.print("명    의:"); String name = stdIn.next();
+      System.out.print("번    호:"); String no = stdIn.next();
+      if (type == 0)
+        a[i] = new Account(name, no);
+      else {
+        System.out.print("잔    고:"); int balance = stdIn.nextInt();
+        System.out.print("개설  연도:"); int y = stdIn.nextInt();
+        System.out.print("개설  월:"); int m = stdIn.nextInt();
+        System.out.print("개설  일:"); int d = stdIn.nextInt();
+        a[i] = new Account (name, no, balance, new Day(y,m,d));
+      }
+      System.out.println("계좌 기본 정보 :"+a[i]);
+      System.out.println("식별 번호 : "+a[i].getId());
+      System.out.println("개설 일 :"+a[i].getOpenDay().toString());
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5.
+
+import java.util.GregorianCalendar;
+import java.util.Random;
+
+class LuckyDraw {
+  public static void main(String[] args) {
+    GregorianCalendar today = new GregorianCalendar();
+    int y = today.get(GregorianCalendar.YEAR);		  //연
+    int m = today.get(GregorianCalendar.MONTH) + 1;      //월
+    int d = today.get(GregorianCalendar.DATE);		  //일
+    System.out.printf("오늘은 %04d년 %02d월 %02d일입니다.\n", y, m, d);
+		
+    Random rand = new Random();
+    int k = rand.nextInt(10);	//운세:_0~9의 난수
+    System.out.print("오늘의 운세는 ");
+    switch (k) {
+      case 0 :			System.out.print("대길"); break;
+      case 1 : case 2 : case 3: System.out.print("길");   break;
+      case 4 : case 5 : case 6: System.out.print("중길"); break;
+      case 7 : case 8 :   	System.out.print("소길"); break;
+      case 9 :			System.out.print("흉");   break;
+    }
+    System.out.println("입니다.");
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6.
+
+import java.util.*;
+import java.util.Random;
+import static java.util.GregorianCalendar.*;
+
+class LuckyDraw2 {
+  public static void main(String[] args) {
+    GregorianCalendar today = new GregorianCalendar();
+    int y = today.get(YEAR);		//연
+    int m = today.get(MONTH) + 1;	//월
+    int d = today.get(DATE);		//일
+    System.out.printf("오늘은 %04d년 %02d월 %02d일입니다.\n", y, m, d);
+		
+    Random rand = new Random();
+    int k = rand.nextInt(10);		//운세: 0~9의 난수
+    System.out.print("오늘의 운세는 ");
+    switch (k) {
+      case 0 :			System.out.print("대길"); break;
+      case 1 : case 2 : case 3: System.out.print("길");   break;
+      case 4 : case 5 : case 6: System.out.print("중길"); break;
+      case 7 : case 8 :   	System.out.print("소길"); break;
+      case 9 :			System.out.print("흉");   break;
+    }
+    System.out.println("입니다.");
+  }
+}
+
+
+
+
+7.
+
+import java.util.Scanner;
+import static java.lang.Math.*;
+import static java.lang.System.in;
+import static java.lang.System.out;
+
+
+class MathMethods {
+  public static void main(String[] args) {
+    Scanner stdIn = new Scanner(in);
+    out.print("실 수:");
+		    		
+    out.println("절댓값:" + abs(x));
+    out.println("제곱근:" + sqrt(x));
+    out.println("넓 이:" + PI*x*x);
+  }
+}
+
+8.
+
+import java.util.GregorianCalendar;
+import static java.util.GregorianCalendar.*;
+
+public class DateId {
+  private static int counter;		       //몇 번까지 식별 번호를 부여했는가
+  private int id;	                               //식별 번호
+
+  static {
+    GregorianCalendar today = new GregorianCalendar();
+    int y = today.get(YEAR);	
+    int m = today.get(MONTH);
+    int d = today.get(DATE);
+			
+    System.out.printf("오늘은 %04d년 %02d월 %02d일입니다.\n", y, m, d);
+			
+    counter = y * 1000000 + m * 10000 + d * 100;
+  }
+		
+  //--생성자---//
+  public DateId() {
+    id = ++counter;	//식별번호
+  }
+		
+  //---식별 번호 가져오기---//
+  public int getId() {
+    return id;
+  }
+}
+
+
+
+
+8-1.
+
+import id.DatdId;
+
+public class DateIdTester {
+  public static void main(String[] args) {
+    DateId a = new DateId();
+    DateId b = new DateId();
+    DateId c = new DateId();
+		
+    System.out.println("a의 식별 번호:" + a.getId());
+    System.out.println("b의 식별 번호:" + b.getId());
+    System.out.println("c의 식별 번호:" + c.getId());
+
+  }
+}
