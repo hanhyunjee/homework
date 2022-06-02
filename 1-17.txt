@@ -1,0 +1,518 @@
+1.
+public class Car {	
+    private String name;      // 이름
+	private int width;        // 폭
+	private int height;       // 높이
+	private int length;       // 길이
+	private double x;         // 현재 위치의 X 좌표
+	private double y;         // 현재 위치의 Y 좌표   
+	private double fuel;      // 남은 연료
+	private Day purchaseDay;  // 구입일
+	
+	// 생성자
+	Car(String name, int width, int height, int length,
+		double fuel, Day purchaseDay) {
+		this.name = name; this.width = width; this.height = height;
+		this.length = length; this.fuel = fuel; x = y = 0.0;
+		this.purchaseDay = new Day(purchaseDay);
+	}
+	
+	public double getX() { return x; }           //현재 위치의 x좌표 불러오기
+	public double getY() { return y; }           //현재 위치의 y좌표 불러오기
+	public double getFuel() { return fuel;}      //남은 연료 불러오기
+	public Day getPurchaseDay() {
+		return new Day(purchaseDay);
+	}
+
+	// 사양 표시
+	public void putSpec() {
+        System.out.println("이름:" + name);
+		System.out.println("전폭:" + width + "mm");
+		System.out.println("전고:" + height + "mm");
+		System.out.println("전장:" + length + "mm");
+    }
+	
+	// X방향으로 dx, Y방향으로 dy이동
+	public boolean move(double dx, double dy) {
+		double dist = Math.sqrt(dx*dx + dy*dy);	// 이동 거리
+		
+		if (dist > fuel)
+			return false;		// 이동할 수 없다 .. 연료 부족
+		else {
+			fuel -= dist;		// 이동 거리분만큼 연료가 준다
+			x += dx;
+			y += dy;
+			return true;		// 이동 완료
+		}
+	}
+}
+1-2.
+public class ExCar extends Car {
+	private double totalMileage;	// 총 주행 거리
+
+	// 생성자
+	public ExCar(String name, int width, int height, int length, double fuel,
+			Day purchasDay) {
+		super(name, width, height, length, fuel, purchasDay);
+		totalMileage = 0.0;
+	}
+	
+	// 총 주행 거리 확인
+	public double getTotalMileage() {
+		return totalMileage;
+	}
+	
+	// 사양 표시
+	public void putSpec() {
+		super.putSpec();
+		System.out.printf("총 주행 거리:%.2fkm\n", totalMileage);
+	}
+	
+	// X 방향으로 dx, Y방향으로 dy이동
+	public boolean move(double dx, double dy) {
+		double dist = Math.sqrt(dx*dx + dy*dy);	// 이동 거리
+		if (!super.move(dx, dy))
+			return false;			// 이동할 수 없다 ... 연료 부족
+		else {
+			totalMileage += dist;	// 총 주행 거리
+			return true;			// 이동 완료
+		}
+	}
+}
+2.
+public class ExCarTester1 {
+	public static void main(String[] args) {
+		ExCar myCar = new ExCar("W221", 
+				1845, 1490, 525, 90.0, new Day(2015,12,24));
+		System.out.printf("현재위치: (%.2f,%.2f)\n", myCar.getX(), myCar.getY());
+		System.out.printf("남은연료: %.2f리터\n", myCar.getFuel());
+		System.out.printf("구 입 일: %s\n", myCar.getPurchaseDay());
+	}
+}
+
+
+
+
+3.
+public class ExCarTester2 {
+	public static void main(String[] args) {
+		ExCar myCar = new ExCar("W221", 1845, 1490, 5205, 90.0,
+								new Day(2015,12,24));
+		myCar.putSpec();	// 사양 표시
+	}
+}
+
+
+
+4.
+public class ExCarTester1 {
+	public static void main(String[] args) {
+		Car car1 = new Car("W140", 1885, 1490, 5220,
+							95.0, new Day(2018, 10, 13));
+		
+		ExCar car2 = new ExCar("W221", 1845, 1490, 5205,
+				90.0, new Day(2015, 12, 24));
+		
+		Car x;		// 클래스형 변수는 ...
+		x = car1;	// 자기자신의 형 인스턴스를 참조할 수 있다(당연)
+		x = car2;	// 하위 클래스형의 인스턴스도 참조할 수 있다!
+		
+		System.out.println("x구입일 : " + x.getPurchaseDay());
+		
+		ExCar y;	// 클래스형 변수는 ...
+	//  y = car1;	// 상위 클래스형의 인스턴스는 참조할 수 없다!
+		y = car2;	// 자기 자신의 형 인스턴스는 참조할 수 있다(당연)
+		
+		System.out.println("y구입일 : " + y.getPurchaseDay());
+		System.out.println("y의 총 주행 거리 : " + y.getTotalMileage());
+	}
+}
+5.
+public class ExCarTester2 {
+	public static void main(String[] args) {
+		Car car1 = new ExCar("W221", 1845, 1490, 5205, 90.0,
+								new Day(2015,12,24));
+		car1.putSpec();	// 사양 표시
+	}
+}
+
+
+6.
+public class Cartester3 {
+	public static void main(String[] args) {
+		Car car1 = new ExCar("W221", 1845, 1490, 5205, 90.0,
+				new Day(2015,12,24));
+		car1.move(10, 10);		// 이동
+//		System.out.println("총 주행 거리 : " + car1.getTotalMileage()); //오류
+		System.out.println("총 주행 거리 : " + ((ExCar)car1).getTotalMileage());
+	}
+}
+
+
+
+7-1.
+public class TimeAccount extends Account {
+	private long timeBalance;				// 예금 잔액(정기예금)
+
+	// 생성자
+	public TimeAccount(String name, String no, long balance, long timeBalance) {
+		super(name, no, balance);			// Account 클래스 생성자 호출
+		this.timeBalance = timeBalance;		// 예금 잔액(정기예금)
+	}
+	
+	// 정기예금 잔액 확인
+	long getTimeBalance() {
+		return timeBalance;
+	}
+	// 정기예금을 해약하고 전액을 보통예금으로 이체
+	void cancel() {
+		deposit(timeBalance);
+		timeBalance = 0;
+	}
+}
+7-2.
+public class AccountCompare {
+	// 어느 쪽 예금 잔액이 많은가
+	static int compBalance(Account a, Account b) {
+		long totalBalanceA = a instanceof TimeAccount
+				? ((TimeAccount)a).getBalance()+((TimeAccount)a).getTimeBalance()
+				: a.getBalance();
+		long totalBalanceB = b instanceof TimeAccount
+				? ((TimeAccount)b).getBalance()+((TimeAccount)b).getTimeBalance()
+				: b.getBalance();
+		if (totalBalanceA > totalBalanceB)	// a가 많으면
+			return 1;
+		else if (totalBalanceA < totalBalanceB)	// b가 많으면
+			return -1;
+		return 0;						// a와 b가 같다
+ 	}
+	
+	public static void main(String[] args) {
+		Account gitldong = new Account("길동", "123456", 500);
+		TimeAccount chulsua = new TimeAccount("철수", "654321", 300, 400);
+		
+		System.out.println("길동이와 철수의 예금 잔액 비교 결과입니다.");
+		switch (compBalance(gitldong, chulsua)) {
+		case 0: System.out.println("둘의 예금 잔액은 같습니다.");	break;
+		case 1: System.out.println("길동이의 예금 잔액이 많습니다.");	break;
+		case -1: System.out.println("철수의 예금 잔액이 많습니다.");	break;
+		}
+
+	}
+
+}
+8.
+public abstract class Animal {
+	private String name;	// 이름
+	public Animal(String name) {this.name = name;} // 생성자
+	public abstract void bark(); // 짖기
+	public String getName() { return name; } // 이름 확인
+}
+
+public class Dog extends Animal {
+	private String type;	// 개의 종류
+
+	public Dog(String name, String type) {	// 생성자
+		super(name); this.type = type;
+	}
+	public void bark() { System.out.println("멍멍"); }	// 짖기
+}
+
+public class Cat extends Animal {
+	private int age;		// 나이
+
+	public Cat(String name, int age) { // 생성자
+		super(name);
+		this.age = age;
+	}
+	public void bark() { System.out.println("냐옹!"); } // 짖기
+}
+
+public class AnimalTester1 {
+	public static void main(String[] args) {
+		// 다음 선언은 오류 : 추상 클래스는 인스턴스화할 수 없다
+		// Animal x = new Animal();
+		
+		Animal[] a = new Animal[2];
+		a[0] = new Dog("뭉치", "치와와"); 	// 개
+		a[1] = new Cat("마이클", 7); 	// 고양이
+		
+		for (Animal s : a) {
+			System.out.print(s.getName() + " ");
+			s.bark();	// 짖기
+			System.out.println();
+		}
+	}
+}
+public class AnimarTester2 {
+	public static void main(String[] args) {
+		// 다음 선언은 오류 : 추상 클래스는 인스턴스화할 수 없다
+		// Animal x = new Animal();
+		
+		Animal[] a = new Animal[2];
+		a[0] = new Dog("뭉치", "치와와"); 	// 개
+		a[1] = new Cat("마이클", 7); 	// 고양이
+		
+
+		for (int i=0; i<a.length; i++) {
+			System.out.print(a[i].getName() + " ");
+			a[i].bark();	// 짖기
+			System.out.println();
+		}
+	}
+}
+9.
+//동물 클래스 버전 2//
+abstract class Animal {
+	private String name;								//이름
+	public Animal(String name) { this.name = name; }	//생성자
+	public abstract void bark();						//짖기
+	public String getName() { return name; }			//이름 확인
+	public abstract String toString();					//문자열 표현 반환
+	public void introduce() {
+		System.out.print(toString()+"이다.");
+		bark();
+	}
+}
+//개클래스 버전2//
+class Dog extends Animal {
+	private String type;
+
+	public Dog(String name, String type) {
+		super(name); this.type = type;
+	}
+	public void bark() { System.out.println("멍멍!"); } //짖기
+	public String toString() {
+		return type + "의 " + getName();
+	}
+}
+//고양이 클래스 버전2//
+class Cat extends Animal {
+	private int age;
+
+	public Cat(String name, int age) {
+		super(name); this.age = age;
+	}
+	public void bark() { System.out.println("냐옹!"); } //짖기
+	public String toString() {
+		return age + "의 " +getName();
+	}
+}
+	//동물 클래스 버전 2 사용 예
+	class AnimalTester1 {
+		public static void main(String[] args) {
+			Animal[] a = new Animal[2];
+			a[0] = new Dog("뭉치", "치와와"); //개
+			a[1] = new Cat("마이클", 7); //고양이
+			
+			for (int i =0; i<a.length; i++) {
+				System.out.println("a[" + i + "] = ");
+				a[i].introduce();
+			}
+		}
+	}
+10_1~3.
+//shape 클래스는 도형의 개념을 나타내기 위한 추상 클래스이다.
+//추상 클래스이므로 이 클래스의 인스턴스를 생성 할 수 없다.
+//구체적인 도형 클래스는 이 클래스로부터 파생된다.
+//@author 시바타
+//@see Object
+
+public abstract class Shape {
+//	도형 정보를 나타내는 문자열을 반환하는 추상 메서드이다.
+//	Shape 클래스에서 파생되는 클래스에서 이 메서드를 구현한다.
+//	이 메서드는 java.lang.Object 클래스의 메서드를 추상 메서드로
+//	오버라이드한 메서드이다!
+	
+	public abstract String toString();
+	
+//	draw 메서드는 도형을 그리기 위한 추상 메서드이다.
+//	Shape 클래스에서 파생되는 클래스에서 이 메서드를 구현한다.
+	
+	public abstract void draw();
+	
+//	print 메서드는 도형 정보의 표시하고 도형 자체를 그린다.
+//	구체적으로는 다음 두 단계를 따른다.
+//	Step 1. toString 메서드가 반환하는 문자열을 표시하고 줄 바꿈
+//	Step 2. draw 메서드를 호출해서 도형을 그림
+	
+	public void print() {
+		System.out.println(toString());
+		draw();
+	}
+}
+
+//point 클래스는 점을 나타내는 클래스이다.
+//이 클래스는 도형을 나타내는 추상 클래스 Shape로부터 파생된 클래스이다.
+//필드는 없다.
+//@author 시바타
+//@see Shape
+
+	public class Point extends Shape {
+//점을 생성하는 생성자이다.
+//받는 인수가 없다
+		
+	public Point() {
+	//아무것도 하지 않는다
+}
+		
+//toString 메서드는 점에 관련된 도형 정보를 문자열로 반환한다.
+//반환하는 문자열은 항상"Point"이다.
+//@return문자열 "point"를 반환한다.
+		
+	public String toString() {
+	return "Point";
+		}
+		
+//draw메서드는 점을 그리는 메서드이다.
+//플러스  기호 +를 1개만 표시하고 줄 바꿈한다
+
+	public void draw() {
+		System.out.println('+');
+	}
+}
+
+//	AbstLine 클래스는 직선을 나타내는 추상 클래스이다.
+//	이 클래스는 도형을 나타내는 추상 클래스 쉐입으로부터 파생되는 클래스이다.
+//	추상 클래스이므로 본 클래스의 인스턴스를 생성할 수 없다.
+//	구체적인 직선 클래스는 이 클래스를 통해 파생된다.
+	//@author 시바타
+	//@see Shape
+	//@SEE hORZlINE vERTlINE
+
+	public abstract class AbstLine extends Shape {
+
+//직선의 길이를 나타내는 int형 필드
+
+		private int length;
+		
+//직선을 생성하는 생성자이다.
+//	길이를 인수로 받는다.
+//	@param length 생성할 직선의 길이
+		
+		public AbstLine(int length) {
+			setLength(length);
+		}
+		
+		//직선의 길이를 반환한다. @return 직선의 길이
+		public int getLength() {
+			return length;
+		}
+		
+		//직선 길이를 설정. @param length 설정할 직선의 길이
+		public void setLength(int length) {
+			this.length = length;
+		}
+		
+		//toString 메서드는 직선에 관련된 도형 정보를 문자열로 반환한다.
+		//@return 문자열 "AbstLine(length:3)"을 반환한다.
+		//3 부분은 길이에 해당하는 값이다.
+		public String toString() {
+			return "AbstLine(length:" + length + ")";
+		}
+	}
+10-4.
+//HorzLine클래스는 수평선을 나타내는 클래스
+
+public class HorzLine extends AbstLine {
+	public HorzLine (int length) {
+		public HorzLine (int length) {
+			super(length);
+		}
+		
+		public String toString() {
+			return "HorzLine(length:" + getLength() +")";
+		}
+		
+		public void draw() {
+			for (int i=1; i<=getLength(); i++)
+				System.out.print('-');
+			System.out.println();
+		}
+	}
+
+
+10-5.
+	
+//VertLine 클래스는 수직선을 나타내는 클래스
+	
+	public class VertLine extends AbstLine {
+		public VertLine(int length) {
+			super(length);
+		}
+		
+		public String toString() {
+			return "VertLine(length:" + getLength() +")";
+		}
+		
+		public void draw() {
+			for (int i=1; i<=getLength(); i++)
+			System.out.println('|');
+		}
+	}
+
+10-6.
+	
+//Rectangle 클래스는 사각형을 나타내는 클래스
+	public class Rectangle extends Shape {
+		private int width;
+		private int height;
+		
+		public Rectangle(int width, int height) {
+			this.width = width; this.height = height;
+		}
+		
+		public String toString() {
+			return "Rectangle(width:" + width + ", height:" + height + ")";
+		}
+		
+		public void draw() {
+			for (int i=1; i<=height; i++) {
+				for (int j=1; j<=width; j++)
+					System.out.print('*');
+				System.out.println();
+			}
+		}
+	}
+}
+10-7.
+import homework.HorzLine.VertLine;
+
+class ShapeTester {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.print("도형의 개수: ");
+		int no = stdIn.nextInt();
+		Shape[] p = new Shape [no];
+		
+		for (int i=0; i<no; i++) {
+			int type;
+			do {
+				System.out.print((i+1)+"번 도형의 종류(1..점 /2..수평선"+
+				"/3..수직선 /4..사각형) :");
+				type = stdIn.nextInt();
+			} while (type<1 || type>4);
+			
+			switch (type) {
+			case 1: p[i] = new Point();
+					break;
+			case 2:
+			case 3: System.out.print("길이는 :");
+					int len = stdIn.nextInt();
+					p[i] = (type==2) ? new HorzLine(len) : new VertLine(len);
+					break;
+			case 4: System.out.print("너비:");
+					int width = stdIn.nextInt();
+					System.out.print("높이:");
+					int height = stdIn.nextInt();
+					p[i] = new Rectangle(width, height);
+					break;
+			}
+		}
+		for (Shape s : p) {
+			s.print();
+			System.out.println();
+		}
+	}
+}
