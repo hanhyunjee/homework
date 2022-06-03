@@ -124,6 +124,7 @@ public interface Plane2D {
 
 }
 
+
 9.
 //---사각형---//
 public class Rectangle extends Shape implements Plane2D{
@@ -255,11 +256,6 @@ public class RobotPet {
 
 
 
-
-
-
-
-
 14.
 
 
@@ -289,21 +285,6 @@ public class SkinnableRobotPet {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -339,20 +320,6 @@ public class SkinnableRobotPetTester {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -402,9 +369,6 @@ public class HeadMountedDisplayTester {
 		hmd.putSkin();
 	}
 }
-
-
-
 
 
 
