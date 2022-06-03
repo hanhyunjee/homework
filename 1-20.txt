@@ -1,0 +1,401 @@
+1.
+public class PrintAscii {
+	public static void main(String[] args) {
+		for (char i=0x21; i<=0x7E; i++)
+			System.out.printf("%c %04x\n", i, (int)i);
+	}
+}
+
+
+
+2.
+import java.util.Scanner;
+public class StringConstructor {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		char[] c = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+		String s1 = "ABC";					// 문자열 리터럴로 초기화
+		String s2 = new String();			// String()
+		String s3 = new String(c);			// String(char[])
+		String s4 = new String(c, 5, 3);	// String(char[], int, int)
+		String s5 = new String("XYZ");		// String(String)
+		System.out.print("문자열 : ");
+		String s6 = stdIn.next();
+		
+		System.out.println("s1 = " + s1);
+		System.out.println("s2 = " + s2);
+		System.out.println("s3 = " + s3);
+		System.out.println("s4 = " + s4);
+		System.out.println("s5 = " + s5);
+		System.out.println("s6 = " + s6);
+	}
+}
+
+
+
+3.
+public class StringTester {
+	public static void main(String[] args) {
+		String s1 = null;			// null참조(참조하지 않는다)
+		String s2 = "";				// ""을 참조
+		String s3 = "ABC";			// "ABC"를 참조
+		String s4 = "ABC";			// "ABC"를 참조
+		String s5 = "ABC";			// "ABC"를 참조
+		s5 = "XYZ";
+		
+		System.out.println("s1 = " + s1);
+		System.out.println("s2 = " + s2);
+		System.out.println("s3 = " + s3);
+		System.out.println("s4 = " + s4);
+		System.out.println("s5 = " + s5);
+		System.out.println("s3와 s4는 같은 문자열 리터럴을 참조" +
+							((s3 == s4) ? "하고 있다." : "하고 있지 않다."));
+	}
+}
+
+4.
+import java.util.Scanner;
+class ScanStringRev {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.print("문자열:");
+		String s = stdIn.next();
+		
+		System.out.print("반대로 읽으면 ");
+		for (int i = s.length() - 1; i >=0; i--)
+			System.out.print(s.charAt(i));
+		System.out.println("입니다.");
+	}
+}
+
+
+5.
+import java.util.Scanner;
+class StringCode {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.print("문자열s:");
+		String s = stdIn.next();
+		
+		for (int i = 0; i<s.length(); i++)
+			System.out.printf("s[%d] = %c %4X \n", i, s.charAt(i), (int)s.charAt(i));
+	}
+}
+
+
+6.
+import java.util.Scanner;
+
+class SearchString {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.print("문자열 s1:"); String s1 = stdIn.next();
+		System.out.print("문자열 s2:"); String s2 = stdIn.next();
+		
+		//s1에 s2가 포함되어 있는가?
+		int idx = s1.indexOf(s2);
+		if (idx == -1)
+			System.out.println("s1 안에 s2가 포함돼 있지 않습니다.");
+		else {
+			System.out.println(s1);
+			for (int i = 0; i< idx; i++)
+				System.out.print(' ');
+			    System.out.println(s2);
+		}
+	}
+}
+
+7.
+import java.util.Scanner;
+
+public class CompareString {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("문자열 s1:"); String s1 = stdIn.next();
+		System.out.println("문자열 s2:"); String s2 = stdIn.next();
+		
+		if(s1 == s2)
+			System.out.println("s1 == s2입니다.");
+		else
+			System.out.println("s1 !== s2입니다.");
+		
+		
+		if(s1.equals(s2))
+			System.out.println("s1과 s2의 내용이 같습니다.");
+		else
+			System.out.println("s1과 s2의 내용이 다릅니다.");
+	}
+}
+
+
+
+
+
+
+
+
+8.
+import java.util.Scanner;
+
+public class StringCompareTo {
+
+	public static void main(String[] args) {
+        Scanner stdIn = new Scanner(System.in);
+		
+		System.out.println("문자열 s1:"); String s1 = stdIn.next();
+		System.out.println("문자열 s2:"); String s2 = stdIn.next();
+		
+		
+		int balance = s1.compareTo(s2);
+		if(balance < 0)
+			System.out.println("s1이 작다.");
+		else if(balance > 0)
+			System.out.println("s2가 작다.");
+		else
+			System.out.println("s1과 s2가 같다.");
+	}
+}
+
+
+
+
+9.
+import java.util.Scanner;
+
+//부동소수점값을 임의의 자릿수로 표시
+public class PrintDouble {
+	//부동소수점값 x를 소수점 이하 9자리, 전체를 적어도 w자리로 표시
+	private static void PrintDouble(double x, int p, int w) {
+		System.out.printf(String.format("%%%d.%df", w, p), x);
+		
+	}
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.print("실수값:");
+		double x = stdIn.nextDouble();
+		
+		System.out.print("전체 자릿수");
+		int w = stdIn.nextInt();
+		
+		System.out.print("소수점 이하 자릿수:");
+		int p = stdIn.nextInt();
+		
+		PrintDouble(x,p,w);
+		System.out.println();
+	}
+}
+
+
+10.
+import java.util.Scanner;
+
+class PrintStringArray {
+	static void printStringArray(String[]a) {
+		for (int i=0; i<a.length; i++) {
+			for (int j=0; j<a[i].length(); j++)
+				System.out.print(a[i].charAt(j));
+			System.out.println();
+		}
+	}
+
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		System.out.print("문자열의 개수:");
+		int n=stdIn.nextInt();
+		String[] sx= new String[n];
+		for (int i=0; i<sx.length; i++) {
+			System.out.print("sx["+i+"]=");
+			sx[i] = stdIn.next();
+		}
+		printStringArray(sx);
+	}
+}
+
+
+
+11.
+
+import java.util.Scanner;
+
+class FingerFlashing3 {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		HumanPlayer hp = new HumanPlayer();
+		ComputerPlayer cp1 = new ComputerPlayer();
+		ComputerPlayer cp2 = new ComputerPlayer();
+		
+		String[] hands = {"가위","바위","보"};
+		int retry;
+		
+		do {
+			int comp1 =cp1.nextHand();
+			int comp2 =cp2.nextHand();
+			
+			int user = hp.nextHand();
+			
+			System.out.println("컴퓨터1은"+hands[comp1]+"이고,"+
+								"컴퓨터2는"+hands[comp2]+"이며,"+
+								"당신은"+hands[user]+"입니다.");
+			int r1 = (user - comp1 + 3)%3;
+			int r2 = (user - comp2 + 3)%3;
+			
+			if (r1==2 && r2==2)
+				System.out.println("당신이 이겼습니다.");
+			else if (r1==1 && r2==0)
+				System.out.println("컴퓨터1이 이겼습니다");
+			else if (r1==0 && r2==1)
+				System.out.println("컴퓨터2가 이겼습니다");
+			else if (r1==0 && r2==2)
+				System.out.println("당신과 컴퓨터1이 이겼습니다");
+			else if (r1==1 && r2==0)
+				System.out.println("당신과 컴퓨터2가 이겼습니다");
+			else if (r1==1 && r2==1)
+				System.out.println("컴퓨터1과 2의 승리입니다");
+			else
+				System.out.println("비겼습니다.");
+			do {
+				System.out.print("다시 한번?(0)아니오 (1)네:");
+				retry = stdIn.nextInt();
+			} while (retry !=0 && retry !=1);
+		} while (retry == 1);		
+	}
+}
+
+
+
+
+
+
+
+
+12.
+class PrintArgs {
+	public static void main(String[] args) {
+		for (int i=0; i<args.length; i++)
+			System.out.println("args["+i+"]="+args[i]);
+	}
+}
+
+
+
+
+
+
+13.
+class Circle {
+	public static void main(String[] args) {
+		double r= Double.parseDouble(args[0]);
+		System.out.printf("반지름 %.2f인 원의 둘레는 %.2f이고 널빙는 %.2f입니다.\n",
+						r,2*Math.PI*r, Math.PI*r*r);
+	}
+}
+
+
+
+
+
+
+14.
+class SumOfArgs {
+	public static void main(String[] args) {
+		double sum = 0.0;
+		for (String s:args)
+			sum += Double.parseDouble(s);
+		System.out.println("합계는 "+sum+"입니다.");
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15.
+import java.util.GregorianCalendar;
+
+class Calendar {
+		static int [] mday = {31,28,31,30,31,30,31,31,30,31,30,31};
+		static int dayOfWeek(int year, int month, int day) {
+			if (month ==1 || month ==2) {
+				year--;
+				month +=12;
+			}
+			return (year+ year/4- year/100+ year/400+ (13*month+8)/5+day)%7;
+		}
+		static boolean isLeap(int year) {
+			return year %4 ==0 && year %100 !=0|| year %400==0;
+		}
+		static int monthDays(int year, int month) {
+			if(month-- !=2)
+				return mday[month];
+			return mday[month]+(isLeap(year)?1:0);
+		}
+		static void putCalendar(int year, int month) {
+			int wd = dayOfWeek(year, month, 1);
+			int mdays = monthDays (year, month);
+			
+			System.out.println("일 월 화 수 목 금 토");
+			System.out.println("-----------------");
+			
+			for (int i=0; i<wd; i++)
+				System.out.print("     ");
+			for (int i=1; i<=mdays; i++) {
+				System.out.printf("%3d", i);
+				if (++wd % 7 == 0)
+					System.out.println();
+			}
+			System.out.println();
+		}
+		public static void main(String[] args) {
+			int year = 1, month = 1;
+			if (args.length ==0) {
+				GregorianCalendar today = new GregorianCalendar();
+				year = today.get(year);
+				month = today.get(month)+1;
+			} else {
+				if (args.length>=1){
+					year = Integer.parseInt(args[0]);
+					if (year<0) {
+						System.out.println("년 지정이 잘못됐습니다.");
+						return;
+					}
+				}
+				if (args.length>=2) {
+					month = Integer.parseInt(args[1]);
+					if (month <1 ||month >12) {
+						System.out.println("월 지정이 잘못됐습니다.");
+						return;
+					}
+				}
+			}
+			if (args.length==0 || args.length>=2) {
+				System.out.printf("%d년 %d월 달력 \n",year, month);
+				putCalendar(year, month);
+			} else {
+				System.out.printf("%d년의 달력\n", year);
+				for (month=1; month<=12; month++) {
+					System.out.printf("%d월\n", month);
+					putCalendar(year, month);
+					System.out.println();
+			}
+		}
+	}
+}
