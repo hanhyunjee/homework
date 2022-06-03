@@ -1,0 +1,455 @@
+1.
+// 웨어러블 인터페이스 Wearable
+
+public interface Wearable {
+	void putOn(); //입기
+	void putOff(); //벗기
+}
+
+
+
+2.
+//헤드폰 클래스 Headphone
+
+public class HeadPhone implements Wearable {
+	int volume = 0; 
+	
+	public void putOn() {
+		System.out.println("헤드폰을 착용했습니다.");
+	}
+	public void putOff() {
+		System.out.println("헤드폰을 벗었습니다.");
+	}
+	public void setVolume(int volume) {
+		this.volume = volume;
+		System.out.println("볼륨을 " +volume + "로 변경했습니다.");
+	}
+}
+
+
+
+
+
+3.
+//웨어러블 컴퓨터 클래스 WearableComputer
+
+public class WearableComputer implements Wearable {
+	public void putOn() {
+		System.out.println("컴퓨터를 실행했습니다.");
+	}
+	public void putOff() {
+		System.out.println("컴퓨터를 껐습니다.");
+	}
+	public void reset() {
+		System.out.println("컴퓨터를 재시작했습니다.");
+	}
+}
+
+
+
+
+
+
+4.
+//인터페이스 Wearable을 구현한 클래스의 사용 예
+class WearableTester {
+
+	public static void main(String[] args) {
+		Wearable[] a = new Wearable[2];
+		a[0] = new HeadPhone();	  //헤드폰
+		a[1] = new WearableComputer();  //웨어러블 컴퓨터
+		
+		for(int i = 0; i < a.length; i++)
+			a[i].putOn();
+
+		for(int i = 0; i < a.length; i++)
+			a[i].putOff();
+	}
+}
+
+
+5. 
+//스킨 변경 스키너블 인터페이스
+public interface Skinnable {
+	int BLACK = 0;			//검정
+	int RED = 1;			//빨강
+	int GREEN = 2;			//초록
+	int BLUE = 3;		 	//파랑
+	int YELLOW = 4;		//노랑
+	void changeSkin(int skin);	//스킨 변경
+}
+
+
+6.
+class SkinnableSoftware  implements Skinnable {
+	int skin;	//스킨
+	
+	public SkinnableSoftware() { this.skin = BLACK; }
+	public SkinnableSoftware(int skin) { this.skin = skin; }
+	
+	public void changeSkin(int skin) { this.skin = skin; }	//스킨변경
+	public int getSkin() { return skin; }			//스킨 가져오기
+	public String getSkinString() {				//스킨의 문자열 반환
+		switch (skin) {
+		case BLACK: return "BLACK";
+		case RED: return "RED";
+		case GREEN: return "GREEN";
+		case BLUE: return "BLUE";
+		case YELLOW: return "YELLOW";
+		}
+		return"";
+	}
+}
+
+
+7.
+public class SkinnableSoftwareTester {
+
+public static void main(String[] args) {
+	SkinnableSoftware x = new SkinnableSoftware();			 //검정
+	SkinnableSoftware y = new SkinnableSoftware(Skinnable.GREEN);//초록
+		
+		x.changeSkin(Skinnable.YELLOW);	//x의 스킨을 노랑으로 변경
+		
+		System.out.println("x의 스킨은 " + x.getSkinString() + "입니다.");
+		System.out.println("y의 스킨은 " + y.getSkinString() + "입니다.");
+	}
+}
+
+8.
+//---2차원 인터페이스 ---//
+public interface Plane2D {
+	
+	int getArea();     // 면적을 구한다
+
+}
+
+9.
+//---사각형---//
+public class Rectangle extends Shape implements Plane2D{
+
+	
+		private int width;         //너비
+		private int height;        //높이
+		
+		public Rectangle(int width, int height) {
+			this.width = width; this.height = height;
+		}
+		
+		public String toString() {  //문자열 표현
+			return "Rectangle(width:" + width + ", height:" + height + ")";
+		}
+		
+		public void draw() { //그리기
+			for(int i = 1; i <= height; i++) {
+				for(int j = 1; j <= width; j++)
+					System.out.print("*");
+				    System.out.println();
+			}
+		}
+		public int getArea() {return width * height;}  //면적 구하기
+
+}
+
+
+10.
+//--- 평행 사변형---//
+public class Parallelogram extends shap implements Plane2D{
+	private int width;         //밑변의 너비
+	private int height;        //높이
+	
+	public Parallelogram(int whidth, int height) {
+		this.width = width; this.height = height;
+	}
+	
+	public String toString() { //문자열 표현
+		return "Parallelogram(width:" + width + ", height:" + height + ")";
+	}
+	public void draw() { //그리기
+		for(int i = 1; i <= height; i++) {
+			for(int j = 1; j <= height - i; j++)System.out.print(' ');
+			for(int j = 1; j <= width; j++)System.out.print('#');
+			
+			    System.out.println();
+
+}
+	}
+	public int getArea() {return width * height;} //면적 구하기
+}
+
+
+
+
+
+11.
+//도형 클래스군 사용 예
+public class ShapeTester {
+
+	public static void main(String[] args) {
+		Plane2D[] a = {
+				new Rectangle(2,5),              // 사각형
+				new Parallelogram(2,5),          // 평행 사변형
+		};
+		for (int i = 0; i < a.length; i++)
+			System.out.println("a[" + i + "]의 면적 =" +a[i].getArea());
+
+	}
+
+}
+
+
+
+
+
+
+
+12.
+// 애완견 클래스
+public class Pet {
+	private String name;            //애완견 이름
+    private String masterName;      // 주인 이름
+    
+    
+	//생성자
+    public Pet(String name, String maStringName) {
+    	this.name = name;                 //애완견 이름
+    	this.masterName = maStringName;   //주인 이름
+	}
+    
+    //애완견 이름 확인
+    public String getMasterName() {return masterName;}
+    
+    //자기 소개
+    public void introduce() {
+    	System.out.println("나의 이름은" + name + "입니다.");
+    	System.out.println("주인님의 이름은" + masterName + "입니다.");
+    }
+
+}
+
+13.
+//로본 애완견 클래스
+public class RobotPet {
+	//생성자
+	public RobotPet(String name, String masterName) {
+		super(name, masterName);       //슈퍼 클래스의 생성자
+	}
+	
+	//자기 소개
+	public void introduce() {
+		System.out.println("나는 로봇! 이름은" + getName() + ".");
+		System.out.println("주인님의 이름은" + getmasterName() + ".");
+	}
+	
+	//가사일 하기
+	public void work(int sw) {
+		swich(sw){
+			case 0: System.out.println("청소를 합니다."); break;
+			case 1: System.out.println("세탁를 합니다."); break;
+			case 2: System.out.println("밥을 합니다."); break;
+		}
+	}
+
+
+}
+
+
+
+
+
+
+
+
+14.
+
+
+//스킨 변경 가능한 로봇 애완견 클래스
+
+public class SkinnableRobotPet {
+	private int skin;   //스킨
+	
+	//생성자
+	public SkinnableRobotPet(String name, String masterName, int skin) {
+		super(name, masterName);        //슈퍼 클래스의 생성자
+		this.skin = skin;
+	}
+	//스킨 변경
+	public void changeSkin(int skin) {
+		this.skin = skin;
+	}
+	//현재의 스킨을 표시
+	public void printSkin() {
+	    switch(skin) {
+	    case BLACK: System.out.println("검정"); break;
+	    case RED: System.out.println("빨강"); break;
+	    case GREEN: System.out.println("초록"); break;
+	    case BLUE: System.out.println("파랑"); break;
+	    case YELLOW: System.out.println("노랑"); break;
+	    }
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15.
+
+//스킨 변경 가능한 로봇 애완인형 클래스 SkinnableRobotPer 사용 예
+
+public class SkinnableRobotPetTester {
+	//p가 참조하는 인스터스에 자기 소개를 시킨다
+	static void intro(Pet p) {
+		p.introduce();
+	}
+
+	public static void main(String[] args) {
+		Pet[]a = {
+				new Pet("kurt", "아이"),
+				new SkinnableRobotPet("OSX5", "Apple", Skinnable.YELLOW),
+				new Pet("마이클", "영남"),
+		};
+		
+		for(Pet p : a) {
+			intro(p);     //p가 참조하는 인스턴스에 자기소개를 시킨다
+			//p의 참도 대상이 SkinnableRobotPet이면..
+			if (p instanceof SkinnableRobotPet) {
+				System.out.println("스킨온");
+				((SkinnableRobotPet)p).printSkin();
+				System.out.println("입니다.");
+			}
+			System.out.println();
+		}
+
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+16.
+
+public class HeadMountedDisplay implements Wearable, Skinnable {
+	private int skin;
+	
+	public void putOn () {
+		System.out.println("디스플레이를 착용했습니다.");
+	}
+	public void putOff() {
+		System.out.println("디스플레이를 벗었습니다.");
+	}
+	public void changeSkin(int skin) {
+		this.skin = skin;
+	}
+	public void putSkin() {
+		switch (skin) {
+		case BLACK : System.out.println("BLACK DISPLAY");    break;
+		case RED : System.out.println("RED DISPLAY");        break;
+		case GREEN : System.out.println("GREEN DISPLAY");    break;
+		case BLUE : System.out.println("BLUE DISPLAY");      break;
+		case YELLOW : System.out.println("YELLOW DISPLAY");  break;
+		}
+	}
+}
+
+
+public class HeadMountedDisplayTester {
+
+	public static void main(String[] args) {
+		HeadMountedDisplay hmd = new HeadMountedDisplay();
+		hmd.putOn();
+		hmd.putOff();
+		hmd.changeSkin(Skinnable.YELLOW);
+		hmd.putSkin();
+		
+		Wearable w = hmd;
+		w.putOn();
+		w.putOff();
+		
+		Skinnable s = hmd;
+		s.changeSkin(Skinnable.Black);
+		
+		hmd.putSkin();
+	}
+}
+
+
+
+
+
+
+17.
+
+public interface Players {
+	void play();
+	void stop();
+}
+
+public interface ExPlayer extends Players{
+	void slow();
+}
+
+public class DVDPlayer implements ExPlayer{
+	public void play() {
+		System.out.println("DVD 재생 시작!");
+	}
+	public void stop() {
+		System.out.println("DVD 재생 종료!");
+	}
+	public void slow() {
+		System.out.println("DVD 느린 재생 시작!");
+	}
+}
+
+class DVDPlayerTester {
+
+	public static void main(String[] args) {
+		DVDPlayer a = new DVDPlayer();
+		Players b = new DVDPlayer();
+		ExPlayer c = new DVDPlayer();
+		
+		System.out.println("DVDPlayer형 변수 a");
+		a.play();
+		a.stop();
+		a.slow();
+		
+		System.out.println("Player형 변수 b");
+		b.play();
+		b.stop();
+		
+		System.out.println("ExPlayer형 변수 c");
+		c.play();
+		c.stop();
+		c.slow();
+	}
+}
