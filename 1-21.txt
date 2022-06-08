@@ -1,0 +1,282 @@
+1.
+import java.util.Scanner
+
+public class MulDiv1 {
+
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in)
+
+		System.out.print("x값: ") int x = stdIn.nextInt()
+		System.out.print("y값: ") int y = stdIn.nextInt()
+
+		System.out.println("x * y = "+ (x*y)) // x * y값 표시 (곱)
+		System.out.println("x / y = "+ (x/y)) // x / y값 표시 (몫)
+	}
+}
+
+2.
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class MulDiv2 {
+
+    static int mul(int x, int y) {
+	    return x * y;
+		}
+	static int div(int x, int y) {
+		return x / y;
+		}
+		
+	static void muldiv(int x, int y) {
+		System.out.println("x * y = "+mul(x, y));	// x * y값 표시 (곱)
+		System.out.println("x / y = "+div(x, y)); 	// x / y값 표시 (몫)
+		}
+		
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		try {
+		System.out.print("x값: "); int x = stdIn.nextInt();
+		System.out.print("y값: "); int y = stdIn.nextInt();
+		
+		muldiv(x, y);
+		}catch (InputMismatchException e) {
+		System.out.println("입력 오류 발생."+e);
+		e.printStackTrace();
+		} catch (ArithmeticException e) {
+		System.out.println("산술 오류 발생."+e);
+		e.printStackTrace();
+		}finally {
+		System.out.println("프로그램을 종료합니다.");
+		}
+	}
+}
+3.
+import java.util.Scanner;
+
+public class ThrowAndCatch {
+	// --- sw값에 따라 예외 발생 --- //
+	static void check(int sw) throws Exception{
+		switch(sw) {
+		case 1: throw new Exception("검사 예외 발생!");
+		case 2: throw new Exception("비검사 예외 발생!");
+		}
+	}
+	
+	// -- check를 호출 -- //
+	static void test(int sw) throws Exception{
+		check(sw);  //이 호출은 검사 예외Exception 발생 가능성이 있다.
+	}
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		
+		System.out.print("sw: ");
+		int sw = stdIn.nextInt();
+		try {
+			test(sw);
+		}catch(RuntimeException e) {  
+			// e: 예외 RuntimeException과 그 하위 클래스를 포착한다.
+			System.out.println(e.getMessage());
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+}
+
+
+4.
+
+import java.io.*;
+import java.util.GregorianCalendar;
+import static java.util.GregorianCalendar.*;
+
+public class LastTime {
+	// -- 이전 날짜, 시간을 읽는다 -- //
+	static void init() {
+		BufferedReader br = null;
+		
+		try {
+			br = new BufferedReader(new FileReader("LastTime.txt"));
+			String time = br.readLine();
+			System.out.println("이전 시간은 "+ time + "였습니다.");
+		}catch(IOException e) {
+			System.out.println("이 프로그램을 실행하는 것은 처음입니다.");
+		}finally {
+			if(br != null) {
+				try {
+					br.close();
+				}catch (IOException e) {
+					System.out.println("파일 닫기 실패.");
+				}
+			}
+		}
+	}
+	// -- 현재 날짜, 시간 읽기 -- //
+	static void term() {
+		FileWriter fw = null;
+		try {
+			fw = new FileWriter("LastTime.txt");
+			GregorianCalendar c = new GregorianCalendar();  // 현재 날짜, 시간
+			fw.write((String.format("%04d년 %02d월 %02d일 %02d시 %02d분 %02d초", c.get(YEAR),c.get(MONTH)+1,c.get(DATE), c.get(HOUR_OF_DAY), c.get(MINUTE), c.get(SECOND) )));
+		} catch (IOException e) {
+			System.out.println("오류 발생!");
+		}finally {
+			if (fw != null) {
+				try {
+					fw.close();
+				}catch(IOException e) {
+					System.out.println("파일 닫기 실패.");
+				}
+			}
+		}
+	}
+	public static void main(String[] args) {
+		init();  // 이전 날짜, 시간 읽기
+		term();  // 현재 날짜, 시간 기록
+		
+	}
+}
+
+5.
+// -- 범위 밖 예외 -- //
+class RangeError extends RuntimeException{
+	RangeError(int n) { super("범위 밖 값:"+n);}
+}
+
+// -- 범위 밖 예외 (매개 변수) -- //
+class ParameterRangeError extends RangeError{
+	ParameterRangeError(int n){super(n);}
+}
+
+// -- 범위 밖 예외(반환값) -- //
+class ResultRangeError extends RangeError{
+	ResultRangeError(int n){super(n);}
+}
+
+
+
+
+
+5-1. 
+import java.util.Scanner;
+
+public class RangeErrorTester {
+	
+	static boolean isValid(int n) {
+	return n >=0 && n <= 9;
+	}
+
+	static int add(int a, int b) throws ParameterRangeError, ResultRangeError{
+		if (!isValid(a)) throw new ParameterRangeError(a);
+		if (!isValid(b)) throw new ParameterRangeError(b);
+		int result = a + b;
+		if (!isValid(result)) throw new ParameterRangeError(result);
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+				
+		System.out.print("정수 a: "); int a = stdIn.nextInt();
+		System.out.print("정수 b: "); int b = stdIn.nextInt();
+		
+		try {
+		System.out.println("합은 " + add(a, b) + "입니다." );
+		} catch (RangeError e) {
+			System.out.println("범위 밖 예외가 발생했습니다.\n" + e.getMessage());
+		}
+	}
+}
+
+
+6.
+import java.util.Scanner;
+
+public class ReverseArray1 {
+	// -- 배열의 요소 a[idx1]와 a[idx2]를 교환 -- //
+	static void swap(int[] a, int idx1, int idx2) {
+		int t = a[idx1];
+		a[idx1] = a[idx2];
+		a[idx2] = t;
+	}
+	
+	// -- 배열 a의 요소를 반대로 나열(오류) -- //
+	static void reverse (int[] a) {
+		try {
+			for(int i=0; i<a.length/2; i++)
+				swap(a, i, a.length - i);
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}catch (ArrayIndexOutOfBoundsException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		System.out.print("요소 수: "); 
+		int num = stdIn.nextInt();
+		int[] x = new int[num];
+		
+		for(int i=0; i<num; i++) {
+			System.out.print("x["+i+"]:");
+			x[i] = stdIn.nextInt();
+		}
+		
+		reverse(x);		// 배열x의 요소를 반대 순서로 나열
+		System.out.println("반대로 나열했습니다.");
+		for(int i=0; i<num; i++) {
+			System.out.println("x["+i+"]: "+ x[i]);
+		}
+	} 
+}
+7.
+import java.util.Scanner;
+
+public class ReverseArray2 {
+	// -- 배열의 요소 a[idx1]와 a[idx2]를 교환 -- //
+	static void swap(int[] a, int idx1, int idx2) {
+		int t = a[idx1];
+		a[idx1] = a[idx2];
+		a[idx2] = t;
+	}
+	
+	// -- 배열 a의 요소를 반대로 나열(오류) -- //
+	static void reverse (int[] a) {
+		try {
+			for(int i=0; i<a.length/2; i++)
+				swap(a, i, a.length - i);
+		}catch (NullPointerException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}catch (ArrayIndexOutOfBoundsException e) {
+			throw new RuntimeException("reverse의 버그? ", e);  // 수정된 코드 부분 
+		}
+	}
+	
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		System.out.print("요소 수: "); 
+		int num = stdIn.nextInt();
+		int[] x = new int[num];
+		
+		for(int i=0; i<num; i++) {
+			System.out.print("x["+i+"]:");
+			x[i] = stdIn.nextInt();
+		}
+		try {
+		reverse(x);		// 배열x의 요소를 반대 순서로 나열
+		System.out.println("반대로 나열했습니다.");
+		for(int i=0; i<num; i++)
+			System.out.println("x["+i+"]: "+ x[i]);
+		} catch (RuntimeException e) {  // 수정된 부분 2
+			System.out.println("예외        : "+ e);
+			System.out.println("예외의 원인   : "+ e.getCause());
+		}
+	} 
+}
+
+
+
+
