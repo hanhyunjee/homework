@@ -187,7 +187,6 @@ public class RangeErrorTester {
 	}
 }
 
-
 6.
 import java.util.Scanner;
 
@@ -276,7 +275,3 @@ public class ReverseArray2 {
 		}
 	} 
 }
-
-
-
-
