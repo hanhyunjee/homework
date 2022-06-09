@@ -51,6 +51,7 @@ public class promotionTest {
 	System.out.println("String -> int : " + e);
 	}
 }
+
 3.
 
 import java.util.Scanner;
@@ -115,6 +116,7 @@ public class dataRange {
 		input.close();
 	}
 }
+
 4.
 
 import java.util.Scanner;
