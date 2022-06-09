@@ -1,10 +1,10 @@
 1.
+java의 자료형을 선언하고 출력
 
 public class TypeJava {
 
 	public static void main(String[] args) {
-		//java의 자료형을 선언하고 출력
-		
+				
 		byte byteType = 100; 					//8 비트 정수 
 		short shorType = 200;					//16비트 정수 
 		int intType = 1000000;					//32비트 정수 
@@ -30,11 +30,11 @@ public class TypeJava {
 }
 
 2.
+강제형 변환 4가지를 만들고 출력
 
 public class promotionTest {
 	
 	public static void main(String[] args) {
-	// 강제형 변환 4가지를 만들고 출력
 	// byte < short < int < long < float < double
 	
 	long a = 127;
@@ -53,14 +53,16 @@ public class promotionTest {
 }
 
 3.
+문자와 정수의 데이터 범위를 증명할 수 있는 프로그램을 작성
 
 import java.util.Scanner;
 
 public class dataRange {
 
 	public static void main(String[] args) {
-		//문자와 정수의 데이터 범위를 증명할 수 있는 프로그램을 작성
-		//입력받은 문자와 정수가 범위 내에 있으면 그대로 출력하고 범위를 벗어나면 
+		
+		//입력받은 문자와 정수가 범위 내에 있으면 그대로 
+		//출력하고 범위를 벗어나면 
 		//오류문구를 출력
 		Scanner input = new Scanner(System.in);
 		
@@ -118,6 +120,7 @@ public class dataRange {
 }
 
 4.
+영어 대문자/소문자를 문자 및 숫자로 출력
 
 import java.util.Scanner;
 
@@ -140,6 +143,7 @@ public class engLowCapNumPrint {
 
 
 5.
+Math로 메서드 round, ceil, pow, sqrt 외에 3가지를 더해 총 7개 형태로 출력
 
 public class MathmethodExample {
 

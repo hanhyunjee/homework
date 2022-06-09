@@ -1,6 +1,4 @@
-2-2 JAVA 과제
-
-문 1. 
+1. 
 int year=2004 처럼 년도를 설정하면 홀수/짝수해 인지를 구분하고 윤년까지 출력 구별해서 출력
 
 import java.util.Scanner;
@@ -31,7 +29,7 @@ public class Year1 {
 }
 
 
-문 2.
+2.
 등비수열 , 등차 수열 사용하여 아래와 같이 출력
   1: 1 2 4 8 16
   2: 250 200 150 100 50
@@ -59,7 +57,31 @@ public class Test02 {
      }
 }
 
-문 4. 
+
+3.
+영문자를 입력하면 소문자는 대문자 대문자는 소문자로 출력
+import java.util.Scanner;
+
+public class ChangeEng {
+
+    public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	System.out.print("문자열을 입력하세요 : ");
+	String str = sc.next();
+		
+	char[] arr = str.toCharArray();
+		
+	for(int i=0;i<arr.length;i++) {
+	    if(arr[i]>='A' && arr[i]<='Z')
+	        System.out.print((char)(arr[i]+32));
+			
+	    else
+		System.out.print((char)(arr[i]-32));
+	}
+    }
+}
+
+4. 
 가감승제를 swithc~case 문을 사용하여 출력
 
 package test;
@@ -104,7 +126,7 @@ public class Plus {
 }
 
 
-문 5.
+5.
 add, sub, mul, div 사용자 정의 함수를 사용하여 출력
 import java.util.Scanner;
 public class AddSubMulDiv {
