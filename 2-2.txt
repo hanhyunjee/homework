@@ -1,0 +1,195 @@
+2조 2-2 JAVA 과제
+
+문 1. 
+int year=2004 처럼 년도를 설정하면 홀수/짝수해 인지를 구분하고 윤년까지 출력 구별해서 출력
+
+import java.util.Scanner;
+
+// int year=2004 처럼 년도를 설정하면 
+// 홀수/짝수해 인지를 구분하고 윤년까지 구별해서 출력 
+
+public class Year1 {
+	public static void main(String[] args) {
+		Scanner stdIn = new Scanner(System.in);
+		int year = 0;
+
+		System.out.println("년도를 입력하세요.");
+		year = stdIn.nextInt();
+
+		if(year % 2 == 0 ) {
+			System.out.println("짝수 해입니다.");
+		} else {
+			System.out.println("홀수 해입니다.");
+		}
+
+		if(year % 4 == 0 || year % 400 == 0) {
+			System.out.println("윤년입니다.");
+		} else {
+			System.out.println("윤년이 아닙니다.");
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+문 2.
+등비수열 , 등차 수열 사용하여 아래와 같이 출력
+  1: 1 2 4 8 16
+  2: 250 200 150 100 50
+
+
+public class Test02 {
+
+	public static void main(String[] args) {
+		int result =1;  //등비수열
+		
+		for(int i=1;i<=5;i++) {
+			result *=2;
+			System.out.printf("%d",result);
+			
+		}
+      
+		
+		//------등차수열-------
+		int result =300; 
+		for(int i=1;i<=5;i++) {
+			result -=50;
+			System.out.printf("%d",result);
+	}
+
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+문 4. 
+가감승제를 swithc~case 문을 사용하여 출력
+
+package test;
+
+import java.util.Scanner;
+public class Plus {    
+    public static void main(String[] args) { 
+        int num1, num2;
+        char op;
+        
+        Scanner scan = new Scanner(System.in);
+        System.out.print("1번째 정수:");
+        num1=scan.nextInt();
+        System.out.print("2번재 정수:");
+        num2=scan.nextInt();
+        String str = scan.next();
+        op=str.charAt(0);
+        switch(op) {
+        case'+':
+        System.out.printf("%d+%d=%d\n",num1,num2, num1+num2);
+        break;
+        case'-':
+        	System.out.printf("%d-%d=%d\n",num1,num2, num1-num2);
+        break;
+        case'*':
+        	System.out.printf("%d*%d=%d\n",num1,num2, num1*num2);
+        break;
+        case'/':
+        	if(num2==0)
+        	{
+        		System.out.printf("%d / %d = 0\n",num1,num2);
+    }
+        	else
+        	{
+        		System.out.printf("%d/%d=0\n",num1,num2, num1+num2);
+}
+        break;
+        default:
+        System.out.printf("사용할수 없는 연산자 입니다.");
+    }
+   }
+}
+
+
+
+
+
+
+
+문 5.
+add, sub, mul, div 사용자 정의 함수를 사용하여 출력
+import java.util.Scanner;
+public class AddSubMulDiv {
+    static Scanner sc = new Scanner(System.in);
+    static boolean run = true;
+
+    static double add(double num1, double num2) {
+        return (num1 + num2);
+    }
+
+    static double sub(double num1, double num2) {
+         return (num1 - num2);
+    }
+
+    static double mul(double num1, double num2) {
+	 return (num1 * num2);
+    }
+
+    static double div(double num1, double num2) {
+	 return (num1 / num2);
+    }
+
+    public static void main(String[] args) {
+        System.out.print("계산할 첫번째 숫자를 입력 : ");
+	double num1 = sc.nextDouble();
+        System.out.print("계산할 두번째 숫자를 입력 : ");
+        double num2 = sc.nextDouble();
+	System.out.println("어떤 연산을 하시겠습니까? 1.덧셈 2.뺄셈 3.곱셈 4.나눗셈                                0.종료");
+	int select = sc.nextInt();
+	
+	    while(run) {
+		switch(select)
+                {
+	        case(1) : System.out.println("서로 덧셈한 결과 : " + add(num1,num2));                           break;
+	        case(2) : System.out.println("서로 뺄셈한 결과 : " + sub(num1,num2));                           break;
+	        case(3) : System.out.println("서로 곱셈한 결과 : " + mul(num1,num2));                           break;
+	        case(4) : System.out.println("서로 나눗셈한 결과 : " +                                           String.format("%.2f",div(num1,num2))); 
+                         break;
+	        case(0) : System.out.println("종료"); run = false;
+                }
+             }
+       }
+}

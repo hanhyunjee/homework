@@ -1,0 +1,166 @@
+1.
+
+public class TypeJava {
+
+	public static void main(String[] args) {
+		//java의 자료형을 선언하고 출력
+		
+		byte byteType = 100; 					//8 비트 정수 
+		short shorType = 200;					//16비트 정수 
+		int intType = 1000000;					//32비트 정수 
+		long longType = 1000000000L;			//64비트 정수	
+		float floatType = 3.14246484513f;		//32비트 부동소수점 
+		double doubleType = 3.14246484513;	//64비트 부동소수점 
+		char charType = '가';					//16비트 유니코드  
+		boolean booleanType = true;			// true , false 
+		
+		System.out.println("java의 자료형을 선언하고 출력");
+		System.out.println();
+		System.out.println("byteType : "+ byteType);
+		System.out.println("shorType : "+ shorType);
+		System.out.println("intType : " +intType);
+		System.out.println("longType : "+longType);
+		System.out.println("floatType : "+floatType);
+		System.out.println("doubleType : "+doubleType);
+		System.out.println("charType : " +charType);
+		System.out.println("blooleanType : "+ booleanType);
+		
+	}
+
+}
+
+2.
+
+public class promotionTest {
+	
+	public static void main(String[] args) {
+	// 강제형 변환 4가지를 만들고 출력
+	// byte < short < int < long < float < double
+	
+	long a = 127;
+	int b = (int)a; 					// long 타입 -> int 타입
+	short c = (short)a;				// long 타입 -> short타입
+	byte d = (byte)a;				// long 타입 -> byte 타입
+	String str = "127";		
+	int e = Integer.parseInt(str);		// String 타입 -> int 타입 (숫자만 가능)
+	
+	System.out.println("long type : " + a);
+	System.out.println("long -> int  : " + b);
+	System.out.println("long -> short : " + c);
+	System.out.println("long -> byte : " + d);
+	System.out.println("String -> int : " + e);
+	}
+}
+3.
+
+import java.util.Scanner;
+
+public class dataRange {
+
+	public static void main(String[] args) {
+		//문자와 정수의 데이터 범위를 증명할 수 있는 프로그램을 작성
+		//입력받은 문자와 정수가 범위 내에 있으면 그대로 출력하고 범위를 벗어나면 
+		//오류문구를 출력
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("입력할 타입은 무엇인가요?");
+		System.out.print("(1.byte / 2. short / 3.int / 4. long / 5. char) : ");
+		int key = input.nextInt();
+		
+		switch (key) {
+		case 1:
+			System.out.print("정수 값을 입력하세요 :");
+			long byteType = input.nextLong();
+			if(byteType>Byte.MIN_VALUE && byteType<Byte.MAX_VALUE)
+				System.out.println("입력한 정수값은 byte type "+byteType+" 입니다.");
+			if(byteType<Byte.MIN_VALUE || byteType>Byte.MAX_VALUE)
+				System.out.println("범위를 초과하였다!");
+			break;
+		case 2:
+			System.out.print("정수 값을 입력하세요 :");
+			long shortType = input.nextLong();
+			if(shortType>Short.MIN_VALUE && shortType<Short.MAX_VALUE)
+				System.out.println("입력한 정수값은 byte type "+shortType+" 입니다.");
+			if(shortType<Short.MIN_VALUE || shortType>Short.MAX_VALUE)
+				System.out.println("범위를 초과하였다!");
+			break;
+		case 3:
+			System.out.print("정수 값을 입력하세요 :");
+			long intType = input.nextLong();
+			if(intType>Integer.MIN_VALUE && intType<Integer.MAX_VALUE)
+				System.out.println("입력한 정수값은 byte type "+intType+" 입니다.");
+			if(intType<Integer.MIN_VALUE || intType>Integer.MAX_VALUE)
+				System.out.println("범위를 초과하였다!");
+			break;
+		case 4:
+			System.out.print("정수 값을 입력하세요 :");
+			long longType = input.nextLong();
+			if(longType>Long.MIN_VALUE && longType<Long.MAX_VALUE)
+				System.out.println("입력한 정수값은 byte type "+longType+" 입니다.");
+			if(longType<Long.MIN_VALUE || longType>Long.MAX_VALUE)
+				System.out.println("범위를 초과하였다!");
+			break;
+		case 5:
+			System.out.print("문자를 입력하세요 :");
+			char charType = input.next().charAt(0);
+			if(charType> 0 && charType<65535)
+				System.out.println("문자값은 char type '"+charType+"' 입니다.");
+			if(charType<0 || charType>65535)
+				System.out.println("범위를 초과하였다!");
+			break;
+
+		default:
+			break;
+		}
+		input.close();
+	}
+}
+4.
+
+import java.util.Scanner;
+
+public class engLowCapNumPrint {
+
+	public static void main(String[] args) {
+		// 영어 대문자/소문자를 문자 및 숫자로 출력
+		
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("영어 대/소문자를 입력하세요! : ");
+		char chr = input.next().charAt(0); 				//0번째 인덱스의 문자를 읽음
+		int num = (int)chr;								//문자를 강제형변환
+				
+		System.out.printf("입력한 문자는 \"%c\"이고 아스키코드값은 \"%d\" 이다",chr,num);
+		
+		input.close();
+	}
+}
+
+
+5.
+
+public class MathmethodExample {
+
+	public static void main(String[] args) {
+		//Math 메소드를 응용해보시오
+		
+		int num1 = 250;
+		int num2 = 3;
+		double result = (double)num1/num2; //83.33333333333 double로 형변환이 필요
+		double result1 = num1/num2; // 결과값은 int형으로 저장된다.
+		
+		System.out.println(result1); //83.0
+		System.out.println("반올림 round : "+Math.round(result));		
+								// 83 , round = 반올림 항상 소수점 1째 자리에서 반올림
+		System.out.println("반올림 round : "+Math.round(result*10)/10.0);		
+								// 83.3 , round = 반올림 항상 소수점 2째 자리에서 반올림
+		System.out.println("올림 값 ceil : "+Math.ceil(result));				
+								//84.0 , ceil = 올림 
+		System.out.println("거듭제곱 값 pow : " +Math.pow(num2, 2));			
+								//9.0 , pow(num2,제곱), 입,출력이 double형
+		System.out.println("내림 값 floor : " +Math.floor(result));		//83.0 , floor= 내림
+		System.out.println("절대값 : " +Math.sqrt(result));				//9.1287..,sqrt = 제곱근
+		System.out.println("랜덤숫자 : "+ (int)(Math.random()*45+1));	//1~45 숫자(정수) 랜덤 생성
+		
+	}
+}
