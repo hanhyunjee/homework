@@ -1,0 +1,126 @@
+1. 10개의 값 중 최대값, 최소값, 중간값을 구해서 출력
+import java.util.Arrays;
+import java.util.Scanner;
+
+//10개의 값 중 최대값, 최소값, 중간값을 구해서 출력
+
+public class TEST01 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("숫자를 입력하세요");
+		int[] x = new int[10];
+		
+		int sum=0;
+		
+		for(int i=1; i<=10; i++) {
+			System.out.println(i+"번째 : ");
+			x[i-1] = sc.nextInt();
+			sum += x[i-1];
+		}
+	
+		double avg = (double)sum/10.0;
+		Arrays.sort(x);			//배열 x를 오름차순으로 정렬
+		
+		System.out.println("최소값 : " + x[0]);
+		System.out.println("중간값 : " + (((avg-x[4]) > (x[5]-avg)) ? x[5] : x[4]));
+		System.out.println("최대값 : " + x[9]);
+	}
+}
+
+
+
+2.  문자를 유니코드 변환 프로그램 작성
+
+import java.util.Scanner
+
+public class TEST02 {
+
+public static void main(String[] args) {
+
+	Scanner scan = new Scanner(System.in);
+
+	System.out.println("문자를입력하세요")
+
+	String str = scan.next()
+
+	  for(int i=0 i<str.length() i++) {
+	  System.out.format("0x%04x ",(int)str.charAt(i))
+	}
+
+    }
+
+}
+
+
+
+3. 중첩 for문  - 추가된 이미지 참조
+
+import java.util.Scanner;
+
+//중첩 for문  - 추가된 이미지 참조
+
+public class TEST03 {
+	
+	    int z = 10;
+	    for(int i=1; i<=z; i++){
+	    	System.out.printf("j = ");
+	      for(int j=0; j<i; j++) System.out.print(j);
+	      System.out.println();
+	    }
+	     System.out.println();
+	    for (int i = 10; i >= 0; i--) { System.out.printf("j = ");
+	    	for (int k = 0; k<= i; k++) System.out.print(k);
+	    	System.out.println();
+	  }
+    }
+}
+4. enum 파일을 활용한 출력
+public class TEST04 {
+
+	public static void main(String[] args) {
+		Season[] sea = Season.values();
+		for(Season s:sea) {
+			System.out.println(s);
+		}
+	}
+}
+
+
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(Season.values()));   // [SPRING, SUMMER, FALL, WINTER]
+    }
+
+    private enum Season {
+        SPRING("봄"),
+        SUMMER("여름"),
+        FALL("가을"),
+        WINTER("겨울");
+
+        private String season;
+
+        Season(String season) {
+            this.season = season;
+        }
+
+        public String getSeason() {
+            return season;
+        }
+    }
+
+}
+
+5. 10->1까지 출력하는 while문
+
+public class TEST05 {
+
+	public static void main(String[] args) {
+		for(int i=10; i>=1; i--) {
+			System.out.println(i);
+		}
+	}
+}
+
