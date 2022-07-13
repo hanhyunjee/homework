@@ -18,7 +18,6 @@ public class EvenOdd {
 }
 
 
-
 2. 숫자를 입력하지 않으면 Exception이 발생하도록 Try~catch 사용
 
 import java.util.InputMismatchException;
